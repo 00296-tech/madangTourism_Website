@@ -1,0 +1,544 @@
+/* ==========================================================================
+   MADANG PROVINCE TOURISM — STYLESHEET
+   Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Space Mono
+   Signature element: the "tide line" — a wave-shaped scroll progress indicator
+   ========================================================================== */
+
+:root { /* :root targets the whole document so these custom properties (variables) are available everywhere */
+  /* Madang provincial flag-inspired palette */
+  --reef-deep:      #000000;   /* black — used for dark section backgrounds */
+  --lagoon:         #AA0000;   /* deep red — used for primary links, buttons, and accents */
+  --tide:           #FFCC00;   /* gold/yellow — used for highlights and the tide line */
+  --palm:           #5C0000;   /* dark maroon — used for contrast-heavy section backgrounds */
+  --sand:           #F6F1E6;   /* warm off-white — used for light alternating sections */
+  --shell:          #FFFFFF;   /* white — used for card surfaces and light text on dark backgrounds */
+  --coral:          #AA0000;   /* red accent — used for primary buttons and CTA elements */
+  --coral-deep:     #7D0000;   /* darker red — used for button hover states */
+  --ink:            #111111;   /* near-black — used for main body text */
+  --ink-soft:       #4A4A4A;   /* muted gray — used for secondary/paragraph text */
+
+  /* Type */
+  --font-display: "Fraunces", Georgia, serif; /* serif font used for headings; Georgia is the fallback if Fraunces fails to load */
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif; /* sans-serif font used for paragraphs and UI text */
+  --font-mono: "Space Mono", "Courier New", monospace; /* monospace font used for small labels/eyebrows for a technical, "instrument" feel */
+
+  /* Layout */
+  --container-w: 1240px; /* maximum width for centered page content */
+  --radius-lg: 28px; /* large corner rounding, used on bigger cards/images */
+  --radius-md: 18px; /* medium corner rounding, used on most cards */
+  --radius-sm: 10px; /* small corner rounding, used on badges/tags */
+  --shadow-soft: 0 20px 50px -20px rgba(11, 61, 66, 0.35); /* soft drop shadow used under floating cards */
+  --shadow-card: 0 12px 30px -14px rgba(11, 61, 66, 0.28); /* slightly tighter shadow used under images/cards */
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1); /* custom easing curve reused by all transitions for a consistent, smooth feel */
+} /* end :root variable declarations */
+
+/* ================= RESET ================= */
+*, *::before, *::after { box-sizing: border-box; } /* makes padding/border count inside an element's declared width, avoiding layout surprises */
+html { scroll-behavior: smooth; scroll-padding-top: 90px; } /* enables smooth in-page scrolling and offsets anchor targets so the fixed nav doesn't cover them */
+body {
+  margin: 0; /* removes the browser's default body margin */
+  font-family: var(--font-body); /* sets the default body typeface to the sans-serif font variable */
+  color: var(--ink); /* sets the default text color */
+  background: var(--shell); /* sets the default page background color */
+  -webkit-font-smoothing: antialiased; /* smooths font rendering on WebKit browsers (Safari/Chrome on Mac) */
+  overflow-x: hidden; /* prevents any horizontal scrollbar caused by full-bleed sections */
+}
+img { max-width: 100%; display: block; } /* keeps images from overflowing their container and removes the small gap under inline images */
+a { color: inherit; text-decoration: none; } /* links inherit surrounding text color and lose the default underline */
+ul { list-style: none; margin: 0; padding: 0; } /* removes default bullet points and spacing from unordered lists */
+button { font: inherit; cursor: pointer; } /* buttons use the page font instead of the browser default, and show a pointer cursor */
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; line-height: 1.12; font-weight: 500; } /* headings use the serif display font, no default margin, tight line spacing */
+p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comfortable line spacing for readability */
+
+@media (prefers-reduced-motion: reduce) { /* applies only when the user's OS setting requests less motion */
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important; /* effectively disables animations for motion-sensitive users */
+    animation-iteration-count: 1 !important; /* stops animations from repeating */
+    transition-duration: 0.001ms !important; /* effectively disables transitions */
+    scroll-behavior: auto !important; /* disables smooth scrolling in favor of instant jumps */
+  }
+} /* end reduced-motion override */
+
+:focus-visible {
+  outline: 3px solid var(--coral); /* gives keyboard users a clear, visible focus ring */
+  outline-offset: 3px; /* pushes the outline slightly away from the element for legibility */
+  border-radius: 4px; /* softens the corners of the focus outline */
+}
+
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 32px; } /* centers content and caps its width, with side padding for smaller screens */
+.container--narrow { max-width: 800px; } /* narrower variant used for text-heavy sections like the FAQ */
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 999; /* hides the link off-screen until it receives keyboard focus */
+  background: var(--coral); color: #fff; padding: 12px 20px; border-radius: 0 0 8px 0; /* styles the link once visible */
+}
+.skip-link:focus { left: 0; } /* brings the skip link into view when a keyboard user tabs to it */
+
+/* ================= TYPE UTILITIES ================= */
+.eyebrow {
+  display: inline-block; /* lets the eyebrow label sit on its own line with block-like spacing while staying inline-sized */
+  font-family: var(--font-mono); /* uses the monospace font for a label/data feel */
+  font-size: 0.72rem; /* small text size */
+  letter-spacing: 0.14em; /* wide letter spacing for an uppercase-label look */
+  text-transform: uppercase; /* forces the text to render in capital letters */
+  color: var(--lagoon); /* default eyebrow color */
+  margin-bottom: 14px; /* space below the label before the next element */
+}
+.eyebrow--light { color: var(--tide); } /* lighter/brighter variant used on dark backgrounds */
+.eyebrow--mono { color: var(--coral); } /* coral-colored variant used for category tags */
+.eyebrow--mono.eyebrow--light { color: #fff; opacity: 0.85; } /* combined variant used for tags over photos */
+
+.section-title {
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem); /* responsive font size that scales between a minimum and maximum based on viewport width */
+  color: var(--ink); /* default heading color */
+  max-width: 18ch; /* limits line length to about 18 characters for balanced headline wrapping */
+}
+.section-title--light { color: var(--shell); } /* light variant for headings on dark section backgrounds */
+.section-title em, .hero__title em { font-style: italic; font-weight: 400; } /* italicizes emphasized words inside headings */
+
+.section-lead { margin-top: 16px; max-width: 60ch; color: var(--ink-soft); font-size: 1.05rem; } /* styles the supporting paragraph under a section heading */
+
+.section-head { margin-bottom: 48px; } /* adds space below the eyebrow+heading block before the section's main content */
+.section-head--center { text-align: center; } /* centers the heading block, used in the FAQ section */
+.section-head--center .section-lead { margin-left: auto; margin-right: auto; } /* centers the lead paragraph itself, not just its text */
+
+/* ================= BUTTONS ================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; /* centers button label/icon content both ways */
+  padding: 15px 30px; /* comfortable click/tap area */
+  border-radius: 100px; /* fully rounded, pill-shaped buttons */
+  font-weight: 700; /* bold button text */
+  font-size: 0.95rem; /* button text size */
+  border: 2px solid transparent; /* reserves space for a border so hover states don't shift layout */
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease); /* smoothly animates these properties on state changes */
+  white-space: nowrap; /* keeps button text on a single line */
+}
+.btn--coral { background: var(--coral); color: #fff; box-shadow: 0 14px 30px -12px rgba(242, 112, 58, 0.55); } /* primary button style: coral fill with a matching glow shadow */
+.btn--coral:hover { background: var(--coral-deep); transform: translateY(-2px); } /* darkens and lifts the button slightly on hover */
+.btn--ghost { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.55); backdrop-filter: blur(6px); } /* semi-transparent "glass" button style used over photos */
+.btn--ghost:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); } /* brightens and lifts the ghost button on hover */
+.btn--outline { background: transparent; color: var(--lagoon); border-color: var(--lagoon); } /* outlined button style on light backgrounds */
+.btn--outline:hover { background: var(--lagoon); color: #fff; } /* fills in with color on hover */
+.btn--outline-light { color: var(--shell); border-color: rgba(255,255,255,0.55); } /* outlined button variant for dark backgrounds */
+.btn--outline-light:hover { background: var(--shell); color: var(--palm); } /* fills white on hover, with dark text for contrast */
+.btn--sm { padding: 10px 20px; font-size: 0.82rem; } /* smaller button size, used in the nav bar */
+.btn--lg { padding: 18px 40px; font-size: 1.05rem; } /* larger button size, used in the final call-to-action */
+
+/* ================= TIDE LINE (signature scroll indicator) ================= */
+.tide-line {
+  position: fixed; top: 0; left: 0; width: 100%; height: 6px; z-index: 1001; /* pins a thin bar to the very top of the viewport, above the nav */
+  background: rgba(11, 61, 66, 0.12); /* faint track color showing the "unfilled" portion */
+}
+.tide-line__wave { display: none; } /* the wave SVG is currently not shown visually; kept in markup for potential future styling */
+.tide-line__fill {
+  height: 100%; width: 0%; /* starts empty; JavaScript updates the width as the page scrolls */
+  background: linear-gradient(90deg, var(--lagoon), var(--tide), var(--coral)); /* gradient fill moving from teal through turquoise to coral */
+  transition: width 0.12s linear; /* smooths out the width changes as scroll position updates */
+}
+
+/* ================= NAV ================= */
+.nav {
+  position: fixed; top: 6px; left: 0; width: 100%; z-index: 1000; /* keeps the nav pinned to the top of the viewport, just below the tide line */
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), padding 0.4s var(--ease); /* smoothly animates the nav's appearance change on scroll */
+}
+.nav__inner {
+  max-width: var(--container-w); margin: 0 auto; padding: 22px 32px; /* centers and pads the nav content to match the container width */
+  display: flex; align-items: center; justify-content: space-between; /* lays out logo, links and actions in a row with space between them */
+}
+.nav.is-scrolled { background: rgba(11, 61, 66, 0.92); backdrop-filter: blur(14px); box-shadow: 0 8px 30px -18px rgba(0,0,0,0.5); } /* darker, blurred "glass" background applied by JS once the user scrolls */
+.nav.is-scrolled .nav__inner { padding: 14px 32px; } /* shrinks the nav's vertical padding once scrolled, making it more compact */
+
+.nav__brand { display: flex; align-items: center; gap: 10px; color: #fff; } /* aligns the logo icon and text side by side */
+.nav__brand-mark { color: var(--tide); display: flex; } /* colors the logo icon turquoise */
+.nav__brand-text { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; } /* styles the "MadangPNG" logo text with the display font */
+.nav__brand-text em { color: var(--tide); font-style: normal; } /* colors the "PNG" part of the logo turquoise without italicizing it */
+.nav__brand-text--footer { color: #fff; font-size: 1.4rem; display: inline-block; margin-bottom: 14px; } /* larger logo variant used in the footer */
+
+.nav__links { display: flex; align-items: center; gap: 30px; } /* lays out the nav links in a horizontal row with spacing */
+.nav__link { color: rgba(255,255,255,0.88); font-size: 0.92rem; font-weight: 600; position: relative; padding: 4px 0; } /* base link styling; position:relative allows the underline pseudo-element below */
+.nav__link::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--tide); /* an invisible underline that starts at zero width */
+  transition: width 0.3s var(--ease); /* animates the underline growing in on hover/active */
+}
+.nav__link:hover::after, .nav__link.is-active::after { width: 100%; } /* expands the underline to full width on hover or when marked active by JS */
+.nav__link.is-active { color: #fff; } /* brightens the text color of the currently active nav link */
+
+.nav__actions { display: flex; align-items: center; gap: 18px; } /* aligns the CTA button and burger icon together */
+.nav__burger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px; /* hidden by default; only shown on mobile via media query below */
+  width: 42px; height: 42px; background: rgba(255,255,255,0.12); border: none; border-radius: 10px; /* button sizing and shape */
+}
+.nav__burger span { display: block; width: 20px; height: 2px; background: #fff; margin: 0 auto; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); } /* the three lines that form the hamburger icon */
+.nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); } /* rotates the top line into the top half of an X when menu is open */
+.nav__burger.is-open span:nth-child(2) { opacity: 0; } /* hides the middle line when menu is open */
+.nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); } /* rotates the bottom line into the bottom half of an X when menu is open */
+
+/* ================= HERO ================= */
+.hero {
+  position: relative; min-height: 100svh; display: flex; align-items: flex-end; /* full-viewport-height section with content anchored to the bottom */
+  color: #fff; overflow: hidden; /* white text by default; hides anything that overflows the section bounds */
+}
+.hero__media { position: absolute; inset: 0; z-index: 0; } /* stretches the image wrapper to fill the entire hero behind the text */
+.hero__media img { width: 100%; height: 100%; object-fit: cover; } /* scales the photo to cover the whole area without distorting it */
+.hero__overlay {
+  position: absolute; inset: 0; /* covers the entire hero on top of the image */
+  background: linear-gradient(180deg, rgba(11,61,66,0.55) 0%, rgba(11,61,66,0.35) 35%, rgba(9,30,32,0.88) 100%); /* dark gradient, darkest at the bottom where the text sits, keeping it readable */
+}
+.hero__content { position: relative; z-index: 1; max-width: 760px; padding: 0 32px 110px; margin-left: 5vw; } /* positions the text above the overlay, limits its width, offsets it slightly from the left edge */
+.hero__title { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-bottom: 22px; } /* large, responsive headline size with slightly tightened letter spacing */
+.hero__desc { max-width: 55ch; font-size: 1.08rem; color: rgba(255,255,255,0.9); margin-bottom: 34px; } /* supporting paragraph sizing, width limit and near-white color */
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; } /* lays the two hero buttons side by side, wrapping onto a new line if needed */
+
+.hero__scroll {
+  position: absolute; bottom: 28px; right: 40px; z-index: 1; /* pins the scroll indicator to the bottom-right of the hero */
+  display: flex; flex-direction: column; align-items: center; gap: 10px; /* stacks the dot above its label, centered */
+  color: rgba(255,255,255,0.85); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; /* small uppercase mono label styling */
+}
+.hero__scroll-dot {
+  width: 10px; height: 10px; border-radius: 50%; background: var(--tide); /* a small turquoise circle */
+  animation: bob 2.2s ease-in-out infinite; /* applies the bobbing keyframe animation defined below, repeating forever */
+}
+@keyframes bob { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(10px); opacity: 0.5; } } /* defines the up-and-down fading motion used by the scroll dot */
+
+/* ================= QUICK NAV CARDS ================= */
+.quicknav { position: relative; z-index: 2; margin-top: -86px; padding-bottom: 90px; } /* negative top margin pulls the cards up so they overlap the bottom of the hero */
+.quicknav__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; } /* four equal-width columns with gaps between the cards */
+.qcard {
+  background: var(--shell); /* white/cream card background */
+  border-radius: var(--radius-md) var(--radius-lg) var(--radius-md) var(--radius-md); /* slightly larger rounding on the top-right corner for visual interest */
+  padding: 30px 26px 34px; /* inner spacing of the card */
+  box-shadow: var(--shadow-soft); /* soft drop shadow lifting the card off the page */
+  position: relative; /* allows child elements to be positioned relative to the card if needed */
+  display: flex; flex-direction: column; /* stacks icon, title, description and arrow vertically */
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); /* animates the hover lift effect smoothly */
+}
+.qcard:hover { transform: translateY(-8px); box-shadow: 0 30px 50px -20px rgba(11,61,66,0.4); } /* lifts the card up and deepens its shadow on hover */
+.qcard__icon { color: var(--lagoon); margin-bottom: 18px; transition: transform 0.4s var(--ease), color 0.4s var(--ease); } /* teal icon color with smooth transition for the hover effect below */
+.qcard:hover .qcard__icon { color: var(--coral); transform: scale(1.1) rotate(-4deg); } /* icon turns coral and playfully scales/rotates on hover */
+.qcard__title { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 8px; } /* card heading styling */
+.qcard__desc { color: var(--ink-soft); font-size: 0.92rem; flex: 1; } /* card description text; flex:1 pushes the arrow to the bottom of the card */
+.qcard__arrow { margin-top: 18px; color: var(--coral); font-size: 1.2rem; transition: transform 0.35s var(--ease); } /* spacing and color for the arrow icon, with a transition for the hover slide */
+.qcard:hover .qcard__arrow { transform: translateX(8px); } /* slides the arrow to the right on hover, suggesting forward motion */
+
+/* ================= ABOUT ================= */
+.about { padding: 40px 0 110px; background: var(--shell); } /* vertical spacing and light background for the About section */
+.about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; } /* two equal columns (text + image) vertically centered */
+.about__lead { font-size: 1.15rem; color: var(--ink); margin-bottom: 18px; font-weight: 600; } /* bold, slightly larger styling for the lead paragraph */
+.about__text p { margin-bottom: 18px; color: var(--ink-soft); } /* spacing and muted color for the regular paragraphs in this section */
+.about__text .btn { margin-top: 10px; } /* small gap above the "Discover More" button */
+.about__media { position: relative; } /* allows the caption badge below to be positioned relative to the image */
+.about__media img { border-radius: var(--radius-lg); box-shadow: var(--shadow-card); aspect-ratio: 4/5; object-fit: cover; } /* rounded corners, shadow, and a fixed portrait aspect ratio for the photo */
+.about__media-tag {
+  position: absolute; left: -20px; bottom: -20px; /* overlaps the bottom-left corner of the image */
+  background: var(--reef-deep); padding: 16px 22px; border-radius: var(--radius-sm); /* dark badge styling */
+  box-shadow: var(--shadow-card); /* shadow so the badge appears to float above the image */
+}
+.about__media-tag .eyebrow { margin: 0; color: var(--tide); } /* removes default eyebrow spacing and colors the badge text turquoise */
+
+/* ================= WAVE DIVIDERS ================= */
+.wave-divider { line-height: 0; margin-top: -2px; } /* removes extra inline spacing under the SVG and closes a 2px gap between sections */
+.wave-divider svg { width: 100%; height: 90px; display: block; } /* stretches the wave SVG across the full width at a fixed height */
+.wave-divider--to-deep svg path { fill: var(--reef-deep); } /* colors the wave shape to match the dark section that follows it */
+.wave-divider--footer { background: var(--reef-deep); } /* dark background behind the footer's wave divider */
+.wave-divider--footer svg path { fill: var(--shell); } /* colors the footer's wave shape to match the lighter color it transitions into */
+.wave-divider--footer svg { height: 60px; } /* shorter wave height specifically for the footer divider */
+
+/* ================= EXPERIENCES ================= */
+.experiences { background: var(--reef-deep); padding: 90px 0 100px; } /* dark section background with vertical spacing */
+.exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; } /* three equal columns of experience cards with gaps */
+.exp-card {
+  background: rgba(255,255,255,0.04); /* very subtle light tint over the dark background */
+  border: 1px solid rgba(255,255,255,0.08); /* faint border to define the card edge */
+  border-radius: var(--radius-md); /* rounded corners */
+  overflow: hidden; /* clips the image corners to match the rounded card */
+  position: relative; /* allows the arrow badge to be positioned within the card */
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease); /* smooth hover lift and border color change */
+}
+.exp-card:hover { transform: translateY(-6px); border-color: var(--tide); } /* lifts the card and highlights its border on hover */
+.exp-card__media { aspect-ratio: 4/3; overflow: hidden; } /* fixed image aspect ratio with overflow hidden for the zoom effect below */
+.exp-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); } /* image fills its box and transitions smoothly when scaled */
+.exp-card:hover .exp-card__media img { transform: scale(1.08); } /* subtly zooms the image in when the card is hovered */
+.exp-card__body { padding: 24px 26px 30px; } /* inner spacing for the card's text content */
+.exp-card__body h3 { color: var(--shell); font-size: 1.3rem; margin: 6px 0 10px; } /* light-colored card heading sized for the dark background */
+.exp-card__body p { color: rgba(255,253,248,0.72); font-size: 0.95rem; } /* semi-transparent light text for the card description */
+.exp-card__arrow {
+  position: absolute; top: 20px; right: 20px; width: 38px; height: 38px; border-radius: 50%; /* circular badge pinned to the top-right of the card */
+  background: rgba(255,255,255,0.14); color: #fff; display: flex; align-items: center; justify-content: center; /* centers the arrow glyph inside the circle */
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease); /* smooth hover color and rotation change */
+}
+.exp-card:hover .exp-card__arrow { background: var(--coral); transform: rotate(45deg); } /* turns the badge coral and rotates the arrow to point outward on hover */
+
+/* ================= DESTINATIONS ================= */
+.destinations { padding: 100px 0; background: var(--shell); } /* vertical spacing and light background for this section */
+.dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; } /* three equal columns of destination cards */
+.dest-card {
+  position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 4/5; /* rounded, clipped, portrait-shaped card */
+  box-shadow: var(--shadow-card); /* drop shadow under each card */
+}
+.dest-card--wide { grid-column: span 2; aspect-ratio: auto; } /* makes the first card span two grid columns and removes the fixed aspect ratio */
+.dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); } /* image fills the card and animates smoothly on hover zoom */
+.dest-card:hover img { transform: scale(1.06); } /* subtle zoom-in effect on hover */
+.dest-card__overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; /* stacks the text content at the bottom of the card */
+  padding: 26px; background: linear-gradient(0deg, rgba(9,30,32,0.88) 0%, rgba(9,30,32,0.05) 60%); /* dark gradient fading upward so the bottom text stays legible */
+}
+.dest-card__overlay h3 { color: #fff; font-size: 1.3rem; margin-bottom: 6px; } /* white destination name styling */
+.dest-card__overlay p { color: rgba(255,255,255,0.82); font-size: 0.92rem; max-width: 32ch; } /* semi-transparent white description text with a line-length limit */
+
+/* ================= WHY / DIVE LOG ================= */
+.why { background: var(--sand); padding: 90px 0; } /* sandy background section with vertical spacing */
+.why-log { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(11,61,66,0.18); } /* four equal columns sharing a top border line, no gap so dividers touch */
+.why-entry {
+  padding: 32px 26px; /* inner spacing for each entry */
+  border-right: 1px dashed rgba(11,61,66,0.25); /* dashed vertical divider between entries, like a logbook */
+  border-bottom: 1px solid rgba(11,61,66,0.18); /* solid divider under each entry */
+  position: relative; /* allows for potential future absolutely-positioned decoration */
+}
+.why-entry:last-child { border-right: none; } /* removes the divider after the final entry so it doesn't dangle */
+.why-entry__mark {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--coral); display: block; margin-bottom: 14px; /* small coral mono "log number" label above each entry heading */
+}
+.why-entry h3 { font-size: 1.15rem; margin-bottom: 10px; } /* entry heading size and spacing */
+.why-entry p { color: var(--ink-soft); font-size: 0.92rem; } /* muted entry description text */
+
+/* ================= CULTURE ================= */
+.culture { display: grid; grid-template-columns: 1fr 1fr; background: var(--palm); min-height: 640px; } /* two equal columns (image + text) on a deep green background with a minimum height */
+.culture__media { position: relative; overflow: hidden; } /* clips the image to its column */
+.culture__media img { width: 100%; height: 100%; object-fit: cover; min-height: 420px; } /* fills the column completely, with a minimum height as a safety net */
+.culture__content { padding: 90px 70px; display: flex; flex-direction: column; justify-content: center; color: var(--shell); } /* generous padding, vertically centered text, light text color for the dark background */
+.culture__content .section-title { color: var(--shell); max-width: 16ch; } /* light heading color with a tighter line-wrap width */
+.culture__content p { color: rgba(255,253,248,0.82); margin-bottom: 16px; max-width: 52ch; } /* semi-transparent light paragraph text with spacing and a readable width limit */
+.culture__content .btn { margin-top: 12px; align-self: flex-start; } /* spacing above the button and prevents it from stretching full width */
+
+/*================= MAP =================*/
+.google_maps { padding: 100px 0; background: var(--shell); } /* vertical spacing and light background for the map section */
+.google_maps__frame-wrap {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.google_maps iframe {
+  display: block;
+  width: 100%;
+  min-height: 320px;
+  height: min(68vh, 620px);
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin: 0 auto;
+}
+
+@media (orientation: portrait) {
+  .google_maps iframe {
+    height: min(52vh, 520px);
+  }
+}
+
+/* ================= PLAN ================= */
+.plan { padding: 100px 0; background: var(--shell); } /* vertical spacing and light background for the planning section */
+.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } /* three equal columns of plan cards */
+.plan-card {
+  text-align: left; background: var(--sand); border: 2px solid transparent; border-radius: var(--radius-md); /* left-aligned text, sandy background, rounded corners, invisible border reserved for the hover state */
+  padding: 28px 26px; transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), background 0.3s var(--ease); /* smooth transitions for hover/active states */
+}
+.plan-card:hover, .plan-card[aria-expanded="true"] { border-color: var(--lagoon); transform: translateY(-4px); background: #fff; } /* highlights the card border, lifts it, and brightens the background on hover or when expanded */
+.plan-card__icon { font-size: 1.6rem; display: block; margin-bottom: 14px; } /* sizing and spacing for the emoji icon */
+.plan-card h3 { font-size: 1.1rem; margin-bottom: 8px; } /* card heading styling */
+.plan-card p { color: var(--ink-soft); font-size: 0.92rem; } /* muted card description text */
+
+.plan-detail {
+  margin-top: 24px; background: var(--reef-deep); color: var(--shell); /* dark panel styled to stand out from the light cards above it */
+  border-radius: var(--radius-md); padding: 30px 34px; /* rounded corners and inner spacing */
+}
+.plan-detail h4 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 10px; color: var(--tide); } /* turquoise heading inside the detail panel */
+.plan-detail p { color: rgba(255,253,248,0.85); } /* semi-transparent light paragraph text inside the detail panel */
+.plan-detail .btn { margin-top: 18px; margin-right: 14px; } /* spacing above, and between, the optional link buttons rendered inside the detail panel */
+
+.plan-cta { text-align: center; margin-top: 50px; } /* centers the "Start Planning" button with space above it */
+
+/* ================= FAQ / ACCORDION ================= */
+.faq { padding: 100px 0; background: var(--sand); } /* vertical spacing and sandy background for the FAQ section */
+.accordion__item { border-bottom: 1px solid rgba(11,61,66,0.18); } /* divider line under each FAQ question/answer pair */
+.accordion__trigger {
+  width: 100%; background: none; border: none; text-align: left; /* makes the whole question row clickable and removes default button styling */
+  display: flex; justify-content: space-between; align-items: center; /* places the question text and the +/x icon on opposite sides */
+  padding: 24px 4px; font-family: var(--font-display); font-size: 1.08rem; color: var(--ink); /* spacing and heading-style typography for the question text */
+}
+.accordion__icon {
+  font-family: var(--font-mono); color: var(--coral); font-size: 1.3rem; flex-shrink: 0; margin-left: 16px; /* coral mono "+" icon that won't shrink and has space from the question text */
+  transition: transform 0.3s var(--ease); /* smoothly animates the rotation when the answer opens */
+}
+.accordion__trigger[aria-expanded="true"] .accordion__icon { transform: rotate(45deg); } /* rotates the "+" into an "x" shape when the answer panel is open */
+.accordion__panel { padding: 0 4px 24px; max-width: 68ch; } /* inner spacing and readable line-length limit for the answer text */
+.accordion__panel p { color: var(--ink-soft); } /* muted color for the answer paragraph */
+
+/* ================= FINAL CTA ================= */
+.final-cta { position: relative; padding: 150px 32px; text-align: center; color: #fff; overflow: hidden; } /* large centered section with white text over a background photo */
+.final-cta__media { position: absolute; inset: 0; } /* stretches the photo wrapper to fill the section behind the text */
+.final-cta__media img { width: 100%; height: 100%; object-fit: cover; } /* scales the photo to fully cover the section */
+.final-cta__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,61,66,0.92), rgba(9,30,32,0.55)); } /* dark gradient overlay so the white text stays readable */
+.final-cta__content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; } /* centers the text content above the overlay with a max width */
+.final-cta__content h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; } /* responsive heading size for the closing call-to-action */
+.final-cta__content p { color: rgba(255,255,255,0.88); margin-bottom: 32px; font-size: 1.05rem; } /* supporting paragraph styling under the CTA heading */
+
+/* ================= FOOTER ================= */
+.footer { background: var(--reef-deep); color: rgba(255,253,248,0.75); padding-top: 0; } /* dark footer background with muted light text */
+.footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding: 20px 32px 60px; } /* four columns, with the brand column wider than the link columns */
+.footer__brand p { max-width: 34ch; margin-bottom: 20px; } /* limits the tagline's width and adds space below it */
+.footer__social { display: flex; gap: 12px; } /* lays the social icons out in a row with spacing */
+.footer__social a {
+  width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); /* circular icon button background */
+  display: flex; align-items: center; justify-content: center; color: #fff; /* centers the icon inside the circle */
+  transition: background 0.3s var(--ease); /* smooth hover color transition */
+}
+.footer__social a:hover { background: var(--tide); color: var(--reef-deep); } /* inverts colors on hover for visual feedback */
+.footer__col h4 { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide); margin-bottom: 18px; } /* small uppercase mono column heading in turquoise */
+.footer__col a { display: block; margin-bottom: 12px; font-size: 0.92rem; transition: color 0.25s var(--ease); } /* stacks footer links vertically with spacing and a smooth hover color change */
+.footer__col a:hover { color: #fff; } /* brightens footer links on hover */
+.footer__bottom {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; /* places copyright and disclaimer text on opposite ends, wrapping if needed */
+  border-top: 1px solid rgba(255,255,255,0.1); padding: 24px 32px; font-size: 0.82rem; /* divider line above the bottom strip, with padding and small text */
+}
+
+/* ================= BACK TO TOP ================= */
+.back-to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 900; /* pins the button to the bottom-right corner of the viewport */
+  width: 48px; height: 48px; border-radius: 50%; border: none; /* circular button shape */
+  background: var(--coral); color: #fff; display: flex; align-items: center; justify-content: center; /* coral fill with the arrow icon centered inside */
+  box-shadow: 0 14px 30px -12px rgba(242,112,58,0.6); /* glowing shadow matching the coral color */
+  opacity: 0; transform: translateY(16px) scale(0.8); pointer-events: none; /* hidden and unclickable by default until JS reveals it */
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease); /* smooth fade/scale-in transition */
+}
+.back-to-top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; } /* fully visible and clickable state, toggled by JS on scroll */
+.back-to-top:hover { background: var(--coral-deep); } /* darkens on hover */
+
+/* ================= REVEAL ON SCROLL ================= */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); } /* starts sections invisible and slightly lower, ready to fade/slide in */
+.reveal.is-visible { opacity: 1; transform: translateY(0); } /* final visible state, toggled by JS via IntersectionObserver */
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1080px) { /* styles applied on tablets and smaller laptop windows */
+  .quicknav__grid { grid-template-columns: repeat(2, 1fr); } /* drops the quick-nav cards from 4 to 2 columns */
+  .exp-grid { grid-template-columns: repeat(2, 1fr); } /* drops experience cards from 3 to 2 columns */
+  .dest-grid { grid-template-columns: repeat(2, 1fr); } /* drops destination cards from 3 to 2 columns */
+  .dest-card--wide { grid-column: span 2; } /* keeps the wide card spanning both columns at this size */
+  .why-log { grid-template-columns: repeat(2, 1fr); } /* drops the dive-log entries from 4 to 2 columns */
+  .why-entry:nth-child(2) { border-right: none; } /* removes the divider after the second entry since it's now the end of a row */
+  .plan-grid { grid-template-columns: repeat(2, 1fr); } /* drops plan cards from 3 to 2 columns */
+  .footer__grid { grid-template-columns: 1fr 1fr; } /* stacks the footer into 2 columns instead of 4 */
+}
+
+@media (max-width: 860px) { /* styles applied on large phones/small tablets */
+  .about__grid { grid-template-columns: 1fr; gap: 40px; } /* stacks the About section's text and image into a single column */
+  .about__media { order: -1; } /* moves the image above the text when stacked */
+  .culture { grid-template-columns: 1fr; } /* stacks the Culture section's image and text into a single column */
+  .culture__content { padding: 60px 32px; } /* reduces the Culture text padding for smaller screens */
+  .culture__media img { min-height: 320px; } /* shortens the Culture image's minimum height on smaller screens */
+}
+
+@media (max-width: 760px) { /* styles applied on typical mobile phone widths */
+  html { scroll-padding-top: 70px; } /* reduces the anchor-scroll offset to match the shorter mobile nav */
+  .nav__links {
+    position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px); /* turns the nav links into a full-height slide-in panel from the right */
+    background: var(--reef-deep); flex-direction: column; align-items: flex-start; /* dark background with links stacked vertically */
+    padding: 110px 32px 40px; gap: 26px; /* spacing inside the mobile menu panel */
+    transform: translateX(100%); transition: transform 0.4s var(--ease); /* starts off-screen to the right, ready to slide in */
+  }
+  .nav__links.is-open { transform: translateX(0); box-shadow: -20px 0 50px -20px rgba(0,0,0,0.5); } /* slides the panel into view and adds a shadow, toggled by JS */
+  .nav__link { font-size: 1.05rem; } /* slightly larger tap targets for mobile links */
+  .nav__burger { display: flex; } /* shows the hamburger button only at this screen size */
+  .nav__actions .btn--sm { display: none; } /* hides the "Explore Now" button in the nav bar on mobile to reduce clutter */
+
+  .hero__content { margin-left: 0; padding: 0 22px 90px; } /* removes the left offset and reduces side padding on small screens */
+  .quicknav { margin-top: -50px; } /* reduces the overlap amount for the quick-nav cards on mobile */
+  .quicknav__grid { grid-template-columns: 1fr; } /* stacks quick-nav cards into a single column */
+  .exp-grid { grid-template-columns: 1fr; } /* stacks experience cards into a single column */
+  .dest-grid { grid-template-columns: 1fr; } /* stacks destination cards into a single column */
+  .dest-card--wide { grid-column: span 1; } /* the wide card no longer spans two columns since there's only one */
+  .why-log { grid-template-columns: 1fr; } /* stacks the dive-log entries into a single column */
+  .why-entry { border-right: none !important; } /* removes all vertical dividers since entries are now stacked */
+  .plan-grid { grid-template-columns: 1fr; } /* stacks plan cards into a single column */
+  .footer__grid { grid-template-columns: 1fr; padding-bottom: 40px; } /* stacks all footer columns into one on mobile */
+  .container { padding: 0 20px; } /* slightly tighter side padding on very small screens */
+  .final-cta { padding: 100px 24px; } /* reduces the final CTA section's padding on mobile */
+}
+
+/* ==========================================================================
+   SHARED SUB-PAGE COMPONENTS
+   Added for the Experiences & Adventures and Accommodation & Food pages.
+   These reuse the existing color/type/spacing tokens above so all three
+   pages (home, experiences, accommodation) share one visual system.
+   ========================================================================== */
+
+/* ---- Page hero: a shorter version of .hero for interior pages ---- */
+.hero--page { min-height: 64vh; } /* shorter than the full-screen homepage hero, since sub-pages need room for content below */
+.hero--page .hero__content { padding-bottom: 70px; } /* less bottom padding to match the shorter hero height */
+.hero--page .hero__desc { max-width: 60ch; } /* slightly wider description line length for the sub-page intro copy */
+
+/* ---- Breadcrumb: small wayfinding trail under the nav on interior pages ---- */
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; /* lays the crumb items out in a row */
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small mono label styling matching the eyebrow style */
+  color: rgba(255,255,255,0.75); position: relative; z-index: 1; /* sits above the hero image/overlay */
+}
+.breadcrumb a { color: rgba(255,255,255,0.75); transition: color 0.25s var(--ease); } /* muted link color with a smooth hover transition */
+.breadcrumb a:hover { color: #fff; } /* brightens on hover */
+.breadcrumb span[aria-hidden] { color: var(--tide); } /* colors the "/" separators turquoise */
+.breadcrumb .breadcrumb__current { color: #fff; } /* the current page's label is fully bright, not a link */
+
+/* ---- Intro lead: a short single-column paragraph under a sub-page hero ---- */
+.page-intro { padding: 70px 0 20px; background: var(--shell); } /* light section with generous top spacing, sitting right below the hero */
+.page-intro .section-lead { max-width: 72ch; font-size: 1.1rem; } /* slightly larger, wider lead paragraph for an introductory statement */
+
+/* ---- Tag row: small pill-shaped category labels shown above a card grid ---- */
+.tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; } /* lays tags out in a wrapping row with spacing below before the cards */
+.tag {
+  display: inline-flex; align-items: center; padding: 8px 18px; border-radius: 100px; /* pill shape */
+  background: var(--sand); color: var(--lagoon); font-family: var(--font-mono); font-size: 0.75rem; /* sandy background with mono teal text, matching the eyebrow/mono styling elsewhere */
+  letter-spacing: 0.04em; border: 1px solid rgba(16,88,90,0.15); /* faint border to define the pill edge */
+}
+.tag--light { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3); } /* variant used for tag rows over dark sections */
+
+/* ---- Split: a two-column media/text "spotlight" block, like .about but reusable for any spotlighted card ---- */
+.split { padding: 30px 0 60px; background: var(--shell); } /* light background with vertical spacing, matching .about's rhythm */
+.split__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; } /* two equal columns, vertically centered, slightly tighter gap than .about */
+.split--reverse .split__grid { direction: rtl; } /* flips the column order for the reversed variant */
+.split--reverse .split__grid > * { direction: ltr; } /* resets text direction inside the flipped columns so content still reads left-to-right */
+.split__media img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); aspect-ratio: 4/3; object-fit: cover; } /* rounded, shadowed image matching the site's card language */
+.split__content p { color: var(--ink-soft); margin-bottom: 16px; } /* muted paragraph spacing matching other body copy */
+.split__content .tag-row { margin-bottom: 20px; } /* tighter tag spacing inside a split block than a full section */
+.split--dark { background: var(--reef-deep); } /* dark variant used when a spotlight sits inside a dark section */
+.split--dark .split__content p { color: rgba(255,253,248,0.78); } /* lighter paragraph text for the dark variant */
+.split--dark .split__content h3, .split--dark .split__content h2 { color: var(--shell); } /* light heading color for the dark variant */
+
+/* ---- Simple grid card variant used for accommodation/food categories (image top, text below, like .exp-card but on a light background) ---- */
+.info-card {
+  background: var(--shell); border: 1px solid rgba(11,61,66,0.1); border-radius: var(--radius-md); overflow: hidden; /* light card with a faint border, rounded and clipped */
+  box-shadow: var(--shadow-card); transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); /* soft shadow with a smooth hover lift */
+}
+.info-card:hover { transform: translateY(-6px); box-shadow: 0 26px 46px -20px rgba(11,61,66,0.32); } /* lifts and deepens the shadow on hover */
+.info-card__media { aspect-ratio: 4/3; overflow: hidden; } /* fixed-ratio image area, clipped for the zoom effect below */
+.info-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); } /* image fills its box and animates smoothly when scaled */
+.info-card:hover .info-card__media img { transform: scale(1.07); } /* subtle zoom on hover, matching .exp-card's behavior */
+.info-card__body { padding: 24px 26px 28px; } /* inner spacing for the card's text content */
+.info-card__body h3 { font-size: 1.2rem; margin: 4px 0 10px; } /* card heading size and spacing */
+.info-card__body p { color: var(--ink-soft); font-size: 0.94rem; } /* muted description text */
+
+/* ---- Cross-page CTA banner: a slim strip linking between the three pages ---- */
+.page-link-banner {
+  background: var(--sand); padding: 60px 0; text-align: center; /* sandy strip with centered content */
+}
+.page-link-banner .section-title { max-width: none; margin: 0 auto 12px; } /* removes the usual heading width cap since this is a short, centered line */
+.page-link-banner p { color: var(--ink-soft); max-width: 60ch; margin: 0 auto 28px; } /* muted, centered supporting text */
+.page-link-banner .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; } /* lays out one or more CTA buttons centered, wrapping on small screens */
+
+@media (max-width: 860px) {
+  .split__grid { grid-template-columns: 1fr; gap: 30px; } /* stacks the split media/text into a single column on tablets and below */
+  .split--reverse .split__grid { direction: ltr; } /* cancels the reverse flip once stacked, since there's only one column left */
+}
+
+@media (max-width: 760px) {
+  .hero--page { min-height: 52vh; } /* shorter still on mobile, since there's less need for a tall hero on small screens */
+  .page-link-banner .btn-row { flex-direction: column; align-items: stretch; } /* stacks CTA buttons full-width on mobile */
+}

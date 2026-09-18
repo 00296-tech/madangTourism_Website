@@ -1,0 +1,592 @@
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Root element of the page; lang="en" tells screen readers/browsers the content is in English -->
+<head> <!-- Container for metadata that isn't displayed directly on the page -->
+<meta charset="UTF-8"> <!-- Sets the character encoding so special characters (like &middot;) display correctly -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page render at the device's width and scale correctly on mobile -->
+<title>Discover Madang | Where Paradise Meets Adventure</title> <!-- Text shown in the browser tab and search results -->
+<meta name="description" content="Discover Madang Province, Papua New Guinea — tropical islands, coral reefs, rainforest and living culture on the north coast."> <!-- Summary used by search engines for SEO -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Tells the browser to start connecting to Google Fonts early, speeding up font loading -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Same early-connection hint for the font file server itself -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> <!-- Loads the three Google Fonts (Fraunces, Plus Jakarta Sans, Space Mono) used across the site -->
+
+<link rel="stylesheet" href="style.css"> <!-- Loads the external stylesheet that controls all visual styling -->
+</head> <!-- Ends the head/metadata section -->
+<body data-page="home"> <!-- Start of the visible page content; data-page tells script.js this is the homepage, so it should use scroll-spy nav highlighting instead of a fixed active link -->
+
+<!-- Tide line — signature scroll progress indicator -->
+<div class="tide-line" aria-hidden="true"> <!-- Fixed strip at the top of the page; aria-hidden hides it from screen readers since it's decorative -->
+  <svg viewBox="0 0 1200 24" preserveAspectRatio="none" class="tide-line__wave"> <!-- SVG canvas for a wave shape (currently unused visually, kept for future styling) -->
+    <path d="M0,12 C150,22 250,2 400,12 C550,22 650,2 800,12 C950,22 1050,2 1200,12 L1200,24 L0,24 Z"></path> <!-- Defines the wavy line shape using SVG path commands -->
+  </svg> <!-- Closes the SVG element -->
+  <div class="tide-line__fill" id="tideFill"></div> <!-- Empty div whose width JavaScript fills in as the user scrolls, like a rising tide -->
+</div> <!-- Closes the tide-line container -->
+
+<!-- Skip link -->
+<a href="#main" class="skip-link">Skip to content</a> <!-- Accessibility link letting keyboard users jump straight past the nav to the main content -->
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="siteNav"> <!-- The site header/navigation bar; id is used by JS to add scroll styling -->
+  <div class="nav__inner"> <!-- Inner wrapper that centers and pads the nav content -->
+    <a href="#home" class="nav__brand"> <!-- Logo/brand link that scrolls back to the hero section -->
+      <span class="nav__brand-mark" aria-hidden="true"> <!-- Wrapper for the decorative logo icon; hidden from screen readers -->
+        <svg viewBox="0 0 40 40" width="34" height="34"><path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M2 34c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="10" r="6" fill="currentColor"/></svg> <!-- Small hand-drawn SVG icon of waves and a sun/island representing the brand -->
+      </span> <!-- Closes the icon wrapper -->
+      <span class="nav__brand-text">Madang<em>PNG</em></span> <!-- The text logo "MadangPNG", with "PNG" italicized/colored differently via CSS -->
+    </a> <!-- Closes the brand link -->
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary"> <!-- The list of navigation links; id lets JS open/close it on mobile -->
+      <a href="#home" class="nav__link" data-page="home">Home</a> <!-- Link to the hero/home section; data-page marks it for the site-wide active-link logic -->
+      <a href="experiences.html" class="nav__link" data-page="experiences">Experiences &amp; Adventures</a> <!-- Links to the dedicated Experiences & Adventures page -->
+      <a href="#destinations" class="nav__link">Destinations</a> <!-- Link to the Destinations section on this page -->
+      <a href="#culture" class="nav__link">Culture</a> <!-- Link to the Culture section on this page -->
+      <a href="accommodation.html" class="nav__link" data-page="accommodation">Accommodation &amp; Food</a> <!-- Links to the dedicated Accommodation & Food page -->
+      <a href="#plan" class="nav__link">Plan Your Trip</a> <!-- Link to the Plan Your Trip section on this page -->
+    </nav> <!-- Closes the navigation links list -->
+
+    <div class="nav__actions"> <!-- Wrapper for the right-hand side nav controls (button + burger) -->
+      <a href="#plan" class="btn btn--coral btn--sm">Explore Now</a> <!-- Prominent call-to-action button in the nav bar -->
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"> <!-- Hamburger button shown only on mobile; aria attributes describe its state for screen readers -->
+        <span></span><span></span><span></span> <!-- The three lines that make up the hamburger icon, animated into an X via CSS/JS -->
+      </button> <!-- Closes the hamburger button -->
+    </div> <!-- Closes nav actions wrapper -->
+  </div> <!-- Closes nav inner wrapper -->
+</header> <!-- Closes the site header -->
+
+<main id="main"> <!-- Landmark wrapping all main page content; target of the skip link -->
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home"> <!-- Full-screen hero section; id="home" is the nav target -->
+    <div class="hero__media"> <!-- Wrapper that holds the background image and overlay -->
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1920&q=80" alt="Image of scuba diver diving in coral waters." loading="eager"> <!-- Hero background photo; loading="eager" because it's above the fold and should load immediately -->
+      <div class="hero__overlay"></div> <!-- Empty div styled in CSS as a dark gradient so the white text stays readable over the photo -->
+    </div> <!-- Closes hero media wrapper -->
+
+    <div class="hero__content"> <!-- Wrapper for the hero text and buttons, sits above the image via z-index -->
+      <p class="eyebrow eyebrow--light">north coast &middot; papua new guinea</p> <!-- Small uppercase label above the headline -->
+      <h1 class="hero__title">Discover Madang<br><em>Where Paradise Meets Adventure</em></h1> <!-- Main page headline; <br> forces a line break, <em> italicizes the tagline -->
+      <p class="hero__desc">Pristine beaches, fringing islands and coral reefs sit alongside rainforest, wildlife and living traditions passed down through generations of Madang communities. This is the north coast of Papua New Guinea, at its most welcoming.</p> <!-- Supporting paragraph describing Madang -->
+      <div class="hero__actions"> <!-- Wrapper that lays the two hero buttons out side by side -->
+        <a href="#discover" class="btn btn--coral">Explore Madang</a> <!-- Primary button scrolling to the About/Discover section -->
+        <a href="#plan" class="btn btn--ghost">Plan Your Trip</a> <!-- Secondary, less prominent button scrolling to the Plan section -->
+      </div> <!-- Closes hero actions wrapper -->
+    </div> <!-- Closes hero content wrapper -->
+
+    <a href="#discover" class="hero__scroll" aria-label="Scroll to discover Madang"> <!-- Scroll-down indicator link; aria-label gives it a meaningful name for screen readers -->
+      <span class="hero__scroll-dot"></span> <!-- Small animated dot that bobs up and down via CSS -->
+      <span class="hero__scroll-label">Scroll</span> <!-- Text label under the dot -->
+    </a> <!-- Closes the scroll indicator link -->
+  </section> <!-- Closes the hero section -->
+
+  <!-- ============ QUICK NAV CARDS ============ -->
+  <section class="quicknav" aria-label="Quick navigation"> <!-- Section holding the four overlapping shortcut cards below the hero -->
+    <div class="container"> <!-- Centers and constrains the width of the content inside -->
+      <div class="quicknav__grid"> <!-- CSS grid that lays the four cards out in a row (or fewer on mobile) -->
+
+        <a href="experiences.html#water-islands" class="qcard"> <!-- First quick-nav card, links to the water & islands section of the Experiences & Adventures page -->
+          <span class="qcard__icon" aria-hidden="true"> <!-- Decorative icon wrapper, hidden from screen readers -->
+            <svg viewBox="0 0 48 48" fill="none"><path d="M6 34c6-16 12-22 18-22s12 6 18 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M4 38c6-4 10-4 16 0s10 4 16 0 8-4 8-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="14" r="4" fill="currentColor"/></svg> <!-- Hand-drawn island/palm icon -->
+          </span> <!-- Closes icon wrapper -->
+          <h3 class="qcard__title">Explore Islands</h3> <!-- Card heading -->
+          <p class="qcard__desc">Beautiful islands, beaches, lagoons and tropical waters.</p> <!-- Card description text -->
+          <span class="qcard__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow that animates on hover -->
+        </a> <!-- Closes first quick-nav card -->
+
+        <a href="experiences.html#water-islands" class="qcard"> <!-- Second quick-nav card, links to the water & islands section of the Experiences & Adventures page -->
+          <span class="qcard__icon" aria-hidden="true"> <!-- Decorative icon wrapper -->
+            <svg viewBox="0 0 48 48" fill="none"><path d="M8 20c8-6 24-6 32 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M12 28c6-4 18-4 24 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/><circle cx="24" cy="12" r="5" stroke="currentColor" stroke-width="2.5"/><path d="M24 17v22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg> <!-- Hand-drawn diving flag/waves icon -->
+          </span> <!-- Closes icon wrapper -->
+          <h3 class="qcard__title">Dive &amp; Snorkel</h3> <!-- Card heading -->
+          <p class="qcard__desc">Explore coral reefs and incredible marine life.</p> <!-- Card description text -->
+          <span class="qcard__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </a> <!-- Closes second quick-nav card -->
+
+        <a href="#culture" class="qcard"> <!-- Third quick-nav card, links to Culture section -->
+          <span class="qcard__icon" aria-hidden="true"> <!-- Decorative icon wrapper -->
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 6l16 9v18l-16 9-16-9V15l16-9z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 15v18M14 20l10-5 10 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> <!-- Hand-drawn hut/shield icon representing culture -->
+          </span> <!-- Closes icon wrapper -->
+          <h3 class="qcard__title">Culture &amp; Heritage</h3> <!-- Card heading -->
+          <p class="qcard__desc">Experience the traditions, stories, art and communities of Madang.</p> <!-- Card description text -->
+          <span class="qcard__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </a> <!-- Closes third quick-nav card -->
+
+        <a href="experiences.html#nature-wildlife" class="qcard"> <!-- Fourth quick-nav card, links to the nature & wildlife section of the Experiences & Adventures page -->
+          <span class="qcard__icon" aria-hidden="true"> <!-- Decorative icon wrapper -->
+            <svg viewBox="0 0 48 48" fill="none"><path d="M8 40L20 16l6 10 6-8 8 22" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36" cy="10" r="4" stroke="currentColor" stroke-width="2.5"/></svg> <!-- Hand-drawn mountain/sun icon representing adventure -->
+          </span> <!-- Closes icon wrapper -->
+          <h3 class="qcard__title">Adventure</h3> <!-- Card heading -->
+          <p class="qcard__desc">Hiking, kayaking, fishing, wildlife and outdoor experiences.</p> <!-- Card description text -->
+          <span class="qcard__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </a> <!-- Closes fourth quick-nav card -->
+
+      </div> <!-- Closes quicknav grid -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes quick-nav section -->
+
+  <!-- ============ ABOUT / WELCOME ============ -->
+  <section class="about reveal" id="discover"> <!-- About section; "reveal" class means JS will fade it in on scroll -->
+    <div class="container about__grid"> <!-- Centers content and arranges it as a two-column grid -->
+      <div class="about__text"> <!-- Left column: all the text content -->
+        <p class="eyebrow">welcome to madang</p> <!-- Small uppercase label above the heading -->
+        <h2 class="section-title">A remarkable stretch of PNG's north coast</h2> <!-- Section heading -->
+        <p class="about__lead">Madang Province is one of Papua New Guinea's most naturally striking destinations — where fringing reefs, volcanic islands and rainforest-covered coastline meet a deep well of local culture.</p> <!-- Bold lead paragraph -->
+        <p>Offshore, coral gardens support an extraordinary range of marine life, drawing divers and snorkellers to warm, clear water. Inland, rainforest rises toward the highlands, home to distinct ecosystems and traditional communities who have lived with this land and sea for generations. Along the coast, villages carry on customs in craft, ceremony, music and daily life, offering visitors a genuine window into Papua New Guinean culture rather than a staged performance of it.</p> <!-- First supporting paragraph -->
+        <p>Whether you're drawn to slow island days, active adventure, or a deeper understanding of local tradition, Madang rewards travellers who take their time.</p> <!-- Second supporting paragraph -->
+        <a href="#experiences" class="btn btn--outline">Discover More</a> <!-- Button linking down to the Experiences section -->
+      </div> <!-- Closes about text column -->
+      <div class="about__media"> <!-- Right column: the featured image and its caption tag -->
+        <!-- Image alternative src="https://www.facebook.com/100083305594226/posts/the-most-iconic-kalibobo-light-house-in-beautiful-madang-well-captured-by-blue-t/476476711805845/" -->
+
+        <img src="Kalibobo_lighthouse01.jpg" alt="Iconic Kalibobo Lighthouse in Madang, along the north coast of Papua New Guinea" loading="lazy"> <!-- Featured photo; loading="lazy" defers loading until it's near the viewport -->
+        <div class="about__media-tag"> <!-- Small badge overlapping the bottom-left corner of the image -->
+          <span class="eyebrow eyebrow--mono">north coast · PNG</span> <!-- Label text inside the badge -->
+        </div> <!-- Closes the media tag badge -->
+      </div> <!-- Closes about media column -->
+    </div> <!-- Closes about grid container -->
+  </section> <!-- Closes About section -->
+
+  <div class="wave-divider wave-divider--to-deep" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"></path></svg></div> <!-- Decorative SVG wave shape that visually transitions from the light About section into the dark Experiences section -->
+
+  <!-- ============ EXPERIENCES ============ -->
+  <section class="experiences reveal" id="experiences"> <!-- Experiences section on a dark teal background -->
+    <div class="container"> <!-- Centers and constrains the content width -->
+      <div class="section-head"> <!-- Wrapper for the section's eyebrow label and heading -->
+        <p class="eyebrow eyebrow--light">things to experience</p> <!-- Small uppercase label -->
+        <h2 class="section-title section-title--light">Experiences You Won't Forget</h2> <!-- Section heading, styled light/white for the dark background -->
+      </div> <!-- Closes section head -->
+
+      <div class="exp-grid"> <!-- CSS grid laying out the six experience cards -->
+
+        <article class="exp-card"> <!-- Card 1: Island Hopping -->
+          <div class="exp-card__media"> <!-- Wrapper that crops/sizes the card image -->
+            <img src="https://images.trvl-media.com/place/2200/8434f81c-63f8-4d87-891b-596296224a2b.jpg?auto=compress&cs=tinysrgb&w=1000" alt="Aerial view of snorkling along an island" loading="lazy"> <!-- Card photo, lazy-loaded since it's below the fold -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area of the card -->
+            <span class="eyebrow eyebrow--mono">01 · on the water</span> <!-- Numbered category label -->
+            <h3>Island Hopping</h3> <!-- Card title -->
+            <p>Move between small offshore islands, quiet lagoons and sandy cays scattered along the Madang coastline.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative circular arrow icon that rotates on hover -->
+        </article> <!-- Closes card 1 -->
+
+        <article class="exp-card"> <!-- Card 2: Diving & Snorkeling -->
+          <div class="exp-card__media"> <!-- Image wrapper -->
+            <img src="https://images.pexels.com/photos/3100361/pexels-photo-3100361.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Vibrant coral reef with colourful fish underwater" loading="lazy"> <!-- Card photo -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area -->
+            <span class="eyebrow eyebrow--mono">02 · underwater</span> <!-- Numbered category label -->
+            <h3>Diving &amp; Snorkeling</h3> <!-- Card title -->
+            <p>Warm, clear water and healthy coral gardens make Madang a long-standing destination for divers and snorkellers.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </article> <!-- Closes card 2 -->
+
+        <article class="exp-card"> <!-- Card 3: Cultural Experiences -->
+          <div class="exp-card__media"> <!-- Image wrapper -->
+            <img src="https://images.trvl-media.com/place/2200/9c62623a-3e90-42ce-a5d0-fafba3432986.jpg" alt="Close-up of girl in traditional attire" loading="lazy"> <!-- Card photo -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area -->
+            <span class="eyebrow eyebrow--mono">03 · community</span> <!-- Numbered category label -->
+            <h3>Cultural Experiences</h3> <!-- Card title -->
+            <p>Meet local communities and see traditional craft, carving and weaving practised much as it has been for generations.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </article> <!-- Closes card 3 -->
+
+        <article class="exp-card"> <!-- Card 4: Rainforest Adventures -->
+          <div class="exp-card__media"> <!-- Image wrapper -->
+            <img src="https://images.pexels.com/photos/28769443/pexels-photo-28769443.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Lush green rainforest foliage" loading="lazy"> <!-- Card photo -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area -->
+            <span class="eyebrow eyebrow--mono">04 · inland</span> <!-- Numbered category label -->
+            <h3>Rainforest Adventures</h3> <!-- Card title -->
+            <p>Head inland from the coast into rainforest trails, river valleys and landscapes that shift with every kilometre.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </article> <!-- Closes card 4 -->
+
+        <article class="exp-card"> <!-- Card 5: Fishing & Ocean Adventures -->
+          <div class="exp-card__media"> <!-- Image wrapper -->
+            <img src="https://papuanewguinea.travel/wp-content/uploads/2023/10/sport-fisher_sportfishing-png_papua-new-guinea_2_0-1024x683.jpg?auto=compress&cs=tinysrgb&w=1000" alt="Fishing boat in clear tropical waters" loading="lazy"> <!-- Card photo -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area -->
+            <span class="eyebrow eyebrow--mono">05 · on the water</span> <!-- Numbered category label -->
+            <h3>Fishing &amp; Ocean Adventures</h3> <!-- Card title -->
+            <p>From reef fishing to open-water trips, Madang's coastal waters offer a range of ocean-based adventures.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </article> <!-- Closes card 5 -->
+
+        <article class="exp-card"> <!-- Card 6: Wildlife & Nature -->
+          <div class="exp-card__media"> <!-- Image wrapper -->
+            <img src="https://images.theconversation.com/files/343629/original/file-20200624-132410-mtns55.jpg?ixlib=rb-4.1.1&q=45&auto=format&w=1000&fit=clip" alt="Spectacled flying-fox" loading="lazy"> <!-- Card photo -->
+          </div> <!-- Closes media wrapper -->
+          <div class="exp-card__body"> <!-- Text content area -->
+            <span class="eyebrow eyebrow--mono">06 · nature</span> <!-- Numbered category label -->
+            <h3>Wildlife &amp; Nature</h3> <!-- Card title -->
+            <p>Rainforest and reef habitats support a wide range of birdlife and marine species found across Madang Province.</p> <!-- Card description -->
+          </div> <!-- Closes card body -->
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Decorative arrow icon -->
+        </article> <!-- Closes card 6 -->
+
+      </div> <!-- Closes experiences grid -->
+      <div class="plan-cta"> <!-- Reuses the same centered-button wrapper style as the Plan section -->
+        <a href="experiences.html" class="btn btn--outline-light">View All Experiences &amp; Adventures</a> <!-- Links to the full Experiences & Adventures page for the complete list -->
+      </div> <!-- Closes the view-all CTA wrapper -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes Experiences section -->
+
+  <!-- ============ DESTINATIONS ============ -->
+  <section class="destinations reveal" id="destinations"> <!-- Destinations section, light background -->
+    <div class="container"> <!-- Centers content -->
+      <div class="section-head"> <!-- Heading block for this section -->
+        <p class="eyebrow">around the province</p> <!-- Small uppercase label -->
+        <h2 class="section-title">Places to Explore in Madang</h2> <!-- Section heading -->
+        <p class="section-lead">A first look at some of the areas associated with Madang Province — worth researching further as you plan your own route.</p> <!-- Explanatory lead paragraph, sets honest expectations -->
+      </div> <!-- Closes section head -->
+
+      <div class="dest-grid"> <!-- CSS grid laying out the destination cards -->
+
+        <article class="dest-card dest-card--wide"> <!-- First card, styled wider (spans 2 grid columns) -->
+          <img src="https://thewritestuffpng.com/wp-content/uploads/2022/03/DSCN6022-1.jpg" alt="Beautiful aerial view of Madang Town" loading="lazy"> <!-- Background photo for the card -->
+          <div class="dest-card__overlay"> <!-- Text overlay sitting on top of the image -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">coastal hub</span> <!-- Category label -->
+            <h3>Madang Town</h3> <!-- Destination name -->
+            <p>Known locally as a scenic harbour town and the province's main coastal centre.</p> <!-- Destination description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Madang Town card -->
+
+        <article class="dest-card"> <!-- Second card: Kranket Island -->
+          <img src="https://images.pexels.com/photos/30793026/pexels-photo-30793026.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Tropical beach with a single palm tree under a blue sky" loading="lazy"> <!-- Background photo -->
+          <div class="dest-card__overlay"> <!-- Text overlay -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">island</span> <!-- Category label -->
+            <h3>Kranket Island</h3> <!-- Destination name -->
+            <p>An island community near Madang Town, part of the wider coastal island group.</p> <!-- Description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Kranket Island card -->
+
+        <article class="dest-card"> <!-- Third card: Bilbil Island -->
+          <img src="https://images.pexels.com/photos/3894868/pexels-photo-3894868.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Palm trees along a tropical beach shore" loading="lazy"> <!-- Background photo -->
+          <div class="dest-card__overlay"> <!-- Text overlay -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">island</span> <!-- Category label -->
+            <h3>Bilbil Island</h3> <!-- Destination name -->
+            <p>A coastal community associated with traditional pottery-making along this stretch of coast.</p> <!-- Description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Bilbil Island card -->
+
+        <article class="dest-card"> <!-- Fourth card: Jais Aben & the Coast -->
+          <img src="https://images.pexels.com/photos/29773805/pexels-photo-29773805.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Clear ocean water along a palm-fringed coastline" loading="lazy"> <!-- Background photo -->
+          <div class="dest-card__overlay"> <!-- Text overlay -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">coast</span> <!-- Category label -->
+            <h3>Jais Aben &amp; the Coast</h3> <!-- Destination name -->
+            <p>Coastal areas north of Madang Town, known generally for diving access and quiet shoreline.</p> <!-- Description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Jais Aben card -->
+
+        <article class="dest-card"> <!-- Fifth card: Offshore Islands -->
+          <img src="https://images.pexels.com/photos/17100727/pexels-photo-17100727.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Coral reef and tropical fish underwater near an island" loading="lazy"> <!-- Background photo -->
+          <div class="dest-card__overlay"> <!-- Text overlay -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">offshore</span> <!-- Category label -->
+            <h3>Offshore Islands</h3> <!-- Destination name -->
+            <p>A scattering of reef-fringed islands sit off the Madang coast, many reachable by boat.</p> <!-- Description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Offshore Islands card -->
+
+        <article class="dest-card"> <!-- Sixth card: Rainforest Areas -->
+          <img src="https://images.pexels.com/photos/28769443/pexels-photo-28769443.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Dense green rainforest foliage inland from the coast" loading="lazy"> <!-- Background photo -->
+          <div class="dest-card__overlay"> <!-- Text overlay -->
+            <span class="eyebrow eyebrow--mono eyebrow--light">inland</span> <!-- Category label -->
+            <h3>Rainforest Areas</h3> <!-- Destination name -->
+            <p>Inland from the coast, rainforest landscapes offer a very different side of the province.</p> <!-- Description -->
+          </div> <!-- Closes overlay -->
+        </article> <!-- Closes Rainforest Areas card -->
+
+      </div> <!-- Closes destinations grid -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes Destinations section -->
+
+  <!-- ============ WHY MADANG — DIVE LOG STATS ============ -->
+  <section class="why reveal"> <!-- "Why Madang" section on a sandy background -->
+    <div class="container"> <!-- Centers content -->
+      <div class="section-head"> <!-- Heading block -->
+        <p class="eyebrow">why madang</p> <!-- Small uppercase label -->
+        <h2 class="section-title">Four Reasons to Visit</h2> <!-- Section heading -->
+      </div> <!-- Closes heading block -->
+
+      <div class="why-log"> <!-- Grid of four "dive log" style entries with dashed dividers -->
+        <div class="why-entry"> <!-- Entry 1 -->
+          <span class="why-entry__mark" aria-hidden="true">01</span> <!-- Numbered mono-font label -->
+          <h3>Tropical Paradise</h3> <!-- Entry heading -->
+          <p>Beautiful beaches, islands, lagoons and reefs along an unspoiled stretch of coast.</p> <!-- Entry description -->
+        </div> <!-- Closes entry 1 -->
+        <div class="why-entry"> <!-- Entry 2 -->
+          <span class="why-entry__mark" aria-hidden="true">02</span> <!-- Numbered label -->
+          <h3>Rich Biodiversity</h3> <!-- Entry heading -->
+          <p>Unique marine and rainforest ecosystems living side by side.</p> <!-- Entry description -->
+        </div> <!-- Closes entry 2 -->
+        <div class="why-entry"> <!-- Entry 3 -->
+          <span class="why-entry__mark" aria-hidden="true">03</span> <!-- Numbered label -->
+          <h3>Living Culture</h3> <!-- Entry heading -->
+          <p>Traditional communities, crafts, stories and customs, still practised today.</p> <!-- Entry description -->
+        </div> <!-- Closes entry 3 -->
+        <div class="why-entry"> <!-- Entry 4 -->
+          <span class="why-entry__mark" aria-hidden="true">04</span> <!-- Numbered label -->
+          <h3>Adventure Awaits</h3> <!-- Entry heading -->
+          <p>Activities for explorers, divers, hikers and nature lovers alike.</p> <!-- Entry description -->
+        </div> <!-- Closes entry 4 -->
+      </div> <!-- Closes why-log grid -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes Why Madang section -->
+
+  <!-- ============ CULTURE ============ -->
+  <section class="culture reveal" id="culture"> <!-- Two-column culture section on a deep green background -->
+    <div class="culture__media"> <!-- Left/first column: the image -->
+      <img src="https://images.trvl-media.com/place/2200/f64c86e2-c1e4-4a08-9428-fb7c15d194a0.jpg" alt="Close-up of hands weaving a traditional basket" loading="lazy"> <!-- Culture photo -->
+    </div> <!-- Closes culture media column -->
+    <div class="culture__content"> <!-- Right/second column: the text -->
+      <p class="eyebrow eyebrow--mono">heritage &amp; tradition</p> <!-- Small uppercase label -->
+      <h2 class="section-title">Experience Living Culture</h2> <!-- Section heading -->
+      <p>Across Madang's coastal and island communities, culture isn't kept behind glass — it's part of daily life. Bilum bags and woven items are made and used much as they always have been, carrying patterns and techniques passed down through families.</p> <!-- First paragraph -->
+      <p>Music, dance, storytelling and food remain central to community life and celebration, and local craftsmanship — from weaving to carving — reflects generations of skill and knowledge of the local environment.</p> <!-- Second paragraph -->
+      <p>Visiting respectfully means listening first: asking before photographing people, supporting local artisans directly, and treating ceremonies and sacred sites with the same care a guest would show at home.</p> <!-- Third paragraph, on respectful tourism -->
+      <a href="#plan" class="btn btn--outline btn--outline-light">Explore Madang Culture</a> <!-- Call-to-action button linking to the Plan section -->
+    </div> <!-- Closes culture content column -->
+  </section> <!-- Closes Culture section -->
+
+  <br> <!-- Extra spacing before the map section -->
+
+  <!-- ============ MAP OF MADANG PROVINCE ============ -->
+  <section class="google_maps" id="map"> <!-- Google Maps embed section -->
+    <div class="container"> <!-- Centers content -->
+      <div class="section-head"> <!-- Heading block -->
+        <p class="eyebrow">where it is</p> <!-- Small uppercase label -->
+        <h2 class="section-title">Madang Province on the Map</h2> <!-- Section heading -->
+        <p class="section-lead">Madang Province sits along the north coast of Papua New Guinea, with a mix of coastal, island and inland rainforest areas.</p> <!-- Explanatory lead paragraph -->
+      </div> <!-- Closes heading block -->
+    </div> <!-- Closes container -->
+    <div class="google_maps__frame-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31785.679649493693!2d145.76261021116304!3d-5.229681826707004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x68f5e6c94906e557%3A0xfba03fe5fcb7b051!2sMadang%20Madang%20Province!5e0!3m2!1sen!2spg!4v1786619159488!5m2!1sen!2spg" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Map of Madang Province"></iframe>
+    </div>
+  </section>
+
+  <!-- ============ PLAN YOUR TRIP ============ -->
+  <section class="plan reveal" id="plan"> <!-- Plan Your Trip section -->
+    <div class="container"> <!-- Centers content -->
+      <div class="section-head"> <!-- Heading block -->
+        <p class="eyebrow">practical planning</p> <!-- Small uppercase label -->
+        <h2 class="section-title">Plan Your Madang Adventure</h2> <!-- Section heading -->
+        <p class="section-lead">A starting point for your own research — details like flights, accommodation and permits change often, so confirm specifics with airlines, accommodation providers and local operators before you travel.</p> <!-- Honest disclaimer paragraph -->
+      </div> <!-- Closes heading block -->
+
+      <div class="plan-grid" id="planGrid"> <!-- Grid of six clickable planning cards; id referenced by JS -->
+        <button class="plan-card" data-plan="getting-there" aria-expanded="false"> <!-- Card 1 button; data-plan is the key JS uses to look up its detail text -->
+          <span class="plan-card__icon" aria-hidden="true">✈</span> <!-- Emoji icon representing air travel -->
+          <h3>Getting There</h3> <!-- Card title -->
+          <p>Madang is generally reached by domestic flight, with onward road and boat options locally.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 1 -->
+        <button class="plan-card" data-plan="where-to-stay" aria-expanded="false"> <!-- Card 2 button -->
+          <span class="plan-card__icon" aria-hidden="true">🏝</span> <!-- Emoji icon representing accommodation -->
+          <h3>Where to Stay</h3> <!-- Card title -->
+          <p>Options range from beachfront resorts to smaller guesthouses and island lodges.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 2 -->
+        <button class="plan-card" data-plan="things-to-do" aria-expanded="false"> <!-- Card 3 button -->
+          <span class="plan-card__icon" aria-hidden="true">🤿</span> <!-- Emoji icon representing activities -->
+          <h3>Things to Do</h3> <!-- Card title -->
+          <p>Diving, island hopping, cultural visits and rainforest trips can usually be arranged locally.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 3 -->
+        <button class="plan-card" data-plan="best-time" aria-expanded="false"> <!-- Card 4 button -->
+          <span class="plan-card__icon" aria-hidden="true">☀</span> <!-- Emoji icon representing climate/season -->
+          <h3>Best Time to Visit</h3> <!-- Card title -->
+          <p>PNG has a tropical climate year-round; check current seasonal conditions before booking.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 4 -->
+        <button class="plan-card" data-plan="local-experiences" aria-expanded="false"> <!-- Card 5 button -->
+          <span class="plan-card__icon" aria-hidden="true">🎭</span> <!-- Emoji icon representing culture/experiences -->
+          <h3>Local Experiences</h3> <!-- Card title -->
+          <p>Community-run tours and homestays offer a closer look at local life and culture.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 5 -->
+        <button class="plan-card" data-plan="travel-tips" aria-expanded="false"> <!-- Card 6 button -->
+          <span class="plan-card__icon" aria-hidden="true">🧭</span> <!-- Emoji icon representing general travel tips -->
+          <h3>Travel Tips</h3> <!-- Card title -->
+          <p>Check current entry requirements, travel advisories and health guidance before departure.</p> <!-- Card summary text -->
+        </button> <!-- Closes card 6 -->
+      </div> <!-- Closes plan grid -->
+
+      <div class="plan-detail" id="planDetail" hidden></div> <!-- Empty panel that JS fills with expanded detail text when a plan card is clicked; hidden by default -->
+
+      <div class="plan-cta"> <!-- Wrapper to center the final call-to-action button -->
+        <a href="#" class="btn btn--coral">Start Planning</a> <!-- Placeholder CTA button (no real destination yet, so href="#") -->
+      </div> <!-- Closes plan CTA wrapper -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes Plan Your Trip section -->
+
+  <!-- ============ CROSS-LINK: ACCOMMODATION & FOOD ============ -->
+  <section class="page-link-banner reveal"> <!-- Short banner pointing visitors to the dedicated Accommodation & Food page -->
+    <div class="container"> <!-- Centers the banner content -->
+      <h2 class="section-title">Where to Stay &amp; What to Eat</h2> <!-- Banner heading -->
+      <p>From beachfront resorts to guesthouses, and fresh seafood to traditional Papua New Guinean dishes — see the full guide to accommodation and food across Madang Province.</p> <!-- Banner supporting text -->
+      <div class="btn-row"> <!-- Wrapper that centers the CTA button -->
+        <a href="accommodation.html" class="btn btn--coral">Explore Accommodation &amp; Food</a> <!-- Links to the new page -->
+      </div> <!-- Closes button wrapper -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes cross-link banner -->
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq reveal"> <!-- FAQ section on a sandy background -->
+    <div class="container container--narrow"> <!-- Narrower container so the FAQ text column isn't too wide to read comfortably -->
+      <div class="section-head section-head--center"> <!-- Centered heading block -->
+        <p class="eyebrow">good to know</p> <!-- Small uppercase label -->
+        <h2 class="section-title">Frequently Asked Questions</h2> <!-- Section heading -->
+      </div> <!-- Closes heading block -->
+
+      <div class="accordion" id="faqAccordion"> <!-- Wrapper for all FAQ items; id referenced (loosely) for styling/organization -->
+
+        <div class="accordion__item"> <!-- FAQ item 1 -->
+          <h3> <!-- Heading wrapping the clickable question for proper document outline -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Clickable question; aria-expanded tracks open/closed state for screen readers -->
+              What makes Madang a great destination? <!-- The question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus icon that rotates into an X-like shape when open -->
+            </button> <!-- Closes the question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel; hidden attribute keeps it collapsed until JS reveals it -->
+            <p>Madang combines coastal scenery, coral reefs, rainforest and living culture in one province — offering a lot of variety for travellers without needing to cover huge distances.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 1 -->
+
+        <div class="accordion__item"> <!-- FAQ item 2 -->
+          <h3> <!-- Heading wrapper -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Question button -->
+              What activities can visitors enjoy? <!-- Question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus/expand icon -->
+            </button> <!-- Closes question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel, collapsed by default -->
+            <p>Diving and snorkelling, island hopping, fishing, rainforest walks and cultural visits are among the more common activities in the province.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 2 -->
+
+        <div class="accordion__item"> <!-- FAQ item 3 -->
+          <h3> <!-- Heading wrapper -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Question button -->
+              What cultural experiences are available? <!-- Question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus/expand icon -->
+            </button> <!-- Closes question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel, collapsed by default -->
+            <p>Many communities welcome respectful visitors interested in traditional weaving, carving, music and local food — often best arranged through local guides or operators.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 3 -->
+
+        <div class="accordion__item"> <!-- FAQ item 4 -->
+          <h3> <!-- Heading wrapper -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Question button -->
+              What should visitors know before travelling? <!-- Question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus/expand icon -->
+            </button> <!-- Closes question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel, collapsed by default -->
+            <p>Check current visa, health and safety guidance from official sources, and confirm transport and accommodation details directly with providers, as these can change.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 4 -->
+
+        <div class="accordion__item"> <!-- FAQ item 5 -->
+          <h3> <!-- Heading wrapper -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Question button -->
+              How can visitors travel responsibly? <!-- Question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus/expand icon -->
+            </button> <!-- Closes question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel, collapsed by default -->
+            <p>Ask before photographing people, support local guides and artisans directly, respect customary land and sacred sites, and be mindful around reefs and marine life.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 5 -->
+
+        <div class="accordion__item"> <!-- FAQ item 6 -->
+          <h3> <!-- Heading wrapper -->
+            <button class="accordion__trigger" aria-expanded="false"> <!-- Question button -->
+              What should I pack for a Madang trip? <!-- Question text -->
+              <span class="accordion__icon" aria-hidden="true">+</span> <!-- Plus/expand icon -->
+            </button> <!-- Closes question button -->
+          </h3> <!-- Closes heading -->
+          <div class="accordion__panel" hidden> <!-- Answer panel, collapsed by default -->
+            <p>Lightweight tropical clothing, sun protection, insect repellent and swimwear are generally useful, along with gear suited to any specific activities you plan to do.</p> <!-- Answer text -->
+          </div> <!-- Closes answer panel -->
+        </div> <!-- Closes FAQ item 6 -->
+
+      </div> <!-- Closes accordion wrapper -->
+    </div> <!-- Closes container -->
+  </section> <!-- Closes FAQ section -->
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta"> <!-- Full-bleed closing call-to-action section -->
+    <div class="final-cta__media"> <!-- Wrapper holding the background photo and its overlay -->
+      <img src="https://images.pexels.com/photos/4810311/pexels-photo-4810311.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Vibrant underwater coral reef scene" loading="lazy"> <!-- Background photo -->
+      <div class="final-cta__overlay"></div> <!-- Dark gradient overlay so the white text stays readable -->
+    </div> <!-- Closes media wrapper -->
+    <div class="final-cta__content"> <!-- Centered text content sitting above the image -->
+      <h2>Your Madang Adventure Starts Here</h2> <!-- CTA heading -->
+      <p>From the ocean to the islands, culture to nature — Madang Province invites you to slow down and explore at your own pace.</p> <!-- CTA supporting text -->
+      <a href="#home" class="btn btn--coral btn--lg">Explore Madang</a> <!-- Large CTA button that scrolls back to the top/hero -->
+    </div> <!-- Closes CTA content -->
+  </section> <!-- Closes Final CTA section -->
+
+</main> <!-- Closes the main content landmark -->
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer"> <!-- Site footer -->
+  <div class="wave-divider wave-divider--footer" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,40 L1440,0 L0,0 Z"></path></svg></div> <!-- Decorative wave shape transitioning into the footer -->
+
+  <div class="container footer__grid"> <!-- Centers content and lays footer columns out in a grid -->
+    <div class="footer__brand"> <!-- First column: brand name, tagline, social icons -->
+      <span class="nav__brand-text nav__brand-text--footer">Madang<em>PNG</em></span> <!-- Footer logo text, reusing the nav brand styling -->
+      <p>Discover Madang Province, Papua New Guinea.</p> <!-- Short tagline -->
+      <div class="footer__social" aria-label="Social media"> <!-- Wrapper for the social icon links -->
+        <a href="#" aria-label="Facebook"> <!-- Placeholder Facebook link; "#" used since no real URL was provided -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.2 3.58c-2.5 0-4.2 1.5-4.2 4.3v2.02H7.3V13h2.7v8h3.5Z"/></svg> <!-- Facebook "f" icon drawn as an SVG path -->
+        </a> <!-- Closes Facebook link -->
+        <a href="#" aria-label="Instagram"> <!-- Placeholder Instagram link -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg> <!-- Instagram camera icon drawn as SVG shapes -->
+        </a> <!-- Closes Instagram link -->
+        <a href="#" aria-label="YouTube"> <!-- Placeholder YouTube link -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z"/></svg> <!-- YouTube play-button icon drawn as SVG shapes -->
+        </a> <!-- Closes YouTube link -->
+      </div> <!-- Closes social icons wrapper -->
+    </div> <!-- Closes footer brand column -->
+
+    <div class="footer__col"> <!-- Second column: Navigate links -->
+      <h4>Navigate</h4> <!-- Column heading -->
+      <a href="#home">Home</a> <!-- Link back to hero -->
+      <a href="#discover">Discover</a> <!-- Link to About section -->
+      <a href="#destinations">Destinations</a> <!-- Link to Destinations section -->
+      <a href="#culture">Culture</a> <!-- Link to Culture section -->
+    </div> <!-- Closes Navigate column -->
+
+    <div class="footer__col"> <!-- Third column: Explore links -->
+      <h4>Explore</h4> <!-- Column heading -->
+      <a href="experiences.html">Experiences &amp; Adventures</a> <!-- Link to the dedicated Experiences & Adventures page -->
+      <a href="experiences.html#water-islands">Dive &amp; Snorkel</a> <!-- Link to the water & islands section of that page -->
+      <a href="experiences.html#water-islands">Island Hopping</a> <!-- Link to the water & islands section of that page -->
+      <a href="#destinations">Offshore Islands</a> <!-- Link to Destinations section on this page -->
+    </div> <!-- Closes Explore column -->
+
+    <div class="footer__col"> <!-- Fourth column: Travel links -->
+      <h4>Travel</h4> <!-- Column heading -->
+      <a href="#plan">Plan Your Trip</a> <!-- Link to Plan section -->
+      <a href="accommodation.html">Accommodation &amp; Food</a> <!-- Link to the dedicated Accommodation & Food page -->
+      <a href="accommodation.html#stay">Where to Stay</a> <!-- Link to the stay section of that page -->
+      <a href="accommodation.html#eat">What to Eat</a> <!-- Link to the eat section of that page -->
+    </div> <!-- Closes Travel column -->
+  </div> <!-- Closes footer grid -->
+
+  <div class="container footer__bottom"> <!-- Bottom strip of the footer with copyright text -->
+    <p>&copy; <span id="year"></span> Madang Tourism. All rights reserved.</p> <!-- Copyright line; JS fills in the current year into the span -->
+    <p class="footer__note">Independent tourism guide · Not an official government site</p> <!-- Disclaimer clarifying this isn't an official government website -->
+  </div> <!-- Closes footer bottom strip -->
+</footer> <!-- Closes site footer -->
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top"> <!-- Floating button that appears after scrolling down; id used by JS -->
+  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg> <!-- Upward-pointing arrow icon -->
+</button> <!-- Closes back-to-top button -->
+
+<script src="script.js"></script> <!-- Loads the external JavaScript file; placed at the end so the DOM exists before it runs -->
+</body> <!-- Closes the visible body content -->
+</html> <!-- Closes the root HTML element -->

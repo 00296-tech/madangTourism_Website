@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiences &amp; Adventures | Discover Madang</title>
+<meta name="description" content="From coral reefs and island hopping to rainforest trails and living culture — explore the full range of experiences and adventures across Madang Province, Papua New Guinea.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css"> <!-- Same shared stylesheet used by index.html, so this page inherits the identical design system -->
+</head>
+<body data-page="experiences"> <!-- data-page tells the shared script.js to mark "Experiences & Adventures" as the active nav link on load, instead of running homepage scroll-spy -->
+
+<!-- Tide line — signature scroll progress indicator, identical markup to the homepage -->
+<div class="tide-line" aria-hidden="true">
+  <svg viewBox="0 0 1200 24" preserveAspectRatio="none" class="tide-line__wave">
+    <path d="M0,12 C150,22 250,2 400,12 C550,22 650,2 800,12 C950,22 1050,2 1200,12 L1200,24 L0,24 Z"></path>
+  </svg>
+  <div class="tide-line__fill" id="tideFill"></div>
+</div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ============ NAVIGATION (same structure as index.html, "Experiences & Adventures" is the current page) ============ -->
+<header class="nav" id="siteNav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__brand">
+      <span class="nav__brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34"><path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M2 34c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="10" r="6" fill="currentColor"/></svg>
+      </span>
+      <span class="nav__brand-text">Madang<em>PNG</em></span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="index.html" class="nav__link" data-page="home">Home</a>
+      <a href="experiences.html" class="nav__link" data-page="experiences">Experiences &amp; Adventures</a>
+      <a href="index.html#destinations" class="nav__link">Destinations</a>
+      <a href="index.html#culture" class="nav__link">Culture</a>
+      <a href="accommodation.html" class="nav__link" data-page="accommodation">Accommodation &amp; Food</a>
+      <a href="index.html#plan" class="nav__link">Plan Your Trip</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a href="index.html#plan" class="btn btn--coral btn--sm">Explore Now</a>
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="hero hero--page" id="home">
+    <div class="hero__media">
+      <img src="https://images.pexels.com/photos/37180573/pexels-photo-37180573.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Visitors crossing a jungle suspension bridge surrounded by dense rainforest" loading="eager">
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> <span class="breadcrumb__current">Experiences &amp; Adventures</span></p>
+      <h1 class="hero__title">Experiences &amp; <em>Adventures</em></h1>
+      <p class="hero__desc">Madang Province stretches from fringing reefs and offshore islands to rainforest and mountain valleys inland. That range means very different kinds of days are possible here — slow cultural visits, active hikes, and everything on and under the water in between.</p>
+      <div class="hero__actions">
+        <a href="#water-islands" class="btn btn--coral">See Water &amp; Islands</a>
+        <a href="accommodation.html" class="btn btn--ghost">Where to Stay &amp; Eat</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="page-intro reveal">
+    <div class="container">
+      <p class="eyebrow">plan your days</p>
+      <h2 class="section-title">A province with a lot of range</h2>
+      <p class="section-lead">Because Madang covers coast, islands and rainforest-covered highlands within a relatively compact area, it's realistic to mix very different experiences into one trip. The categories below are grouped by theme — culture and community, nature and wildlife, and water and islands — so you can build an itinerary around what interests you most.</p>
+    </div>
+  </section>
+
+  <!-- ============ CULTURE & COMMUNITY ============ -->
+  <section class="experiences reveal" id="culture-experiences">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--light">culture &amp; community</p>
+        <h2 class="section-title section-title--light">Living Culture, Shared Respectfully</h2>
+        <p class="section-lead" style="color: rgba(255,253,248,0.75);">Across Madang's coastal and island communities, culture is part of daily life rather than a performance staged for visitors. These experiences work best arranged through local guides who can make the right introductions.</p>
+      </div>
+
+      <div class="tag-row" aria-hidden="true">
+        <span class="tag--light tag">Cultural Shows</span>
+        <span class="tag--light tag">Village Visits</span>
+        <span class="tag--light tag">Heritage</span>
+        <span class="tag--light tag">Craft &amp; Weaving</span>
+      </div>
+
+      <div class="exp-grid">
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/32656681/pexels-photo-32656681.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Colorful traditional dancers in costume performing at a cultural festival" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">culture</span>
+            <h3>Traditional Cultural Shows &amp; Performances</h3>
+            <p>Communities across Madang and the wider region keep traditions of dance, costume and storytelling alive through performances that mark ceremonies and celebrations. Ask locally about upcoming shows, as timing varies through the year.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/32656448/pexels-photo-32656448.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Close-up of hands crafting a traditional hand drum" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">heritage</span>
+            <h3>Historical &amp; Heritage Sites</h3>
+            <p>Madang Town carries visible history, including memorials connected to the Pacific War era along the coast. As with any heritage site, opening times and access can change, so confirm current details with a local guide before visiting.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/32403975/pexels-photo-32403975.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Close-up of hands weaving a traditional basket by hand" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">craft</span>
+            <h3>Craft, Weaving &amp; Local Artisans</h3>
+            <p>Bilum weaving, carving and pottery traditions — including the pottery associated with Bilbil — are practised in communities along the coast. Buying directly from artisans is the most direct way to support these traditions.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- Spotlight: Village Visits (two-column, dark variant, reuses the .split component) ---- -->
+  <section class="split split--dark reveal">
+    <div class="container split__grid">
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/6306270/pexels-photo-6306270.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Warm family portrait outdoors, representing local community life" loading="lazy">
+      </div>
+      <div class="split__content">
+        <p class="eyebrow eyebrow--mono eyebrow--light">community</p>
+        <h3 class="section-title section-title--light">Village Visits &amp; Community Experiences</h3>
+        <p>A guided village visit is one of the more direct ways to understand daily life in Madang — homes, gardens, family life, and the rhythms of a coastal or island community. These visits are best arranged through a local guide or homestay host who can make introductions respectfully and explain what's appropriate to photograph or ask about.</p>
+        <a href="accommodation.html#stay" class="btn btn--outline-light">See Homestay Options</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider wave-divider--to-deep" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"></path></svg></div>
+
+  <!-- ============ NATURE & WILDLIFE ============ -->
+  <section class="experiences reveal" id="nature-wildlife">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--light">nature &amp; wildlife</p>
+        <h2 class="section-title section-title--light">Rainforest, Trails &amp; Wildlife</h2>
+        <p class="section-lead" style="color: rgba(255,253,248,0.75);">Inland from the coast, Madang's rainforest rises toward the highlands, supporting habitats that shift with elevation. A local guide makes a real difference here — for navigation, safety, and knowing where wildlife is likely to be active.</p>
+      </div>
+
+      <div class="tag-row" aria-hidden="true">
+        <span class="tag--light tag">Rainforest</span>
+        <span class="tag--light tag">Birdwatching</span>
+        <span class="tag--light tag">Hiking</span>
+        <span class="tag--light tag">Photography</span>
+      </div>
+
+      <div class="exp-grid">
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/28769443/pexels-photo-28769443.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Lush green rainforest foliage" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">rainforest</span>
+            <h3>Rainforest Exploration &amp; Nature Walks</h3>
+            <p>Guided walks move through rainforest trails at a pace that leaves room to notice plant life, insects and birdsong rather than just covering distance. Trail conditions vary with recent rain, so check locally before setting out.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/8975272/pexels-photo-8975272.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Two adults using binoculars in a lush forest setting" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">wildlife</span>
+            <h3>Bird-Watching &amp; Wildlife Spotting</h3>
+            <p>Papua New Guinea's rainforests are known internationally for rich and distinctive birdlife. Early morning is generally the most active time; a local guide who knows the calls and habits of the area greatly improves your chances.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/5118522/pexels-photo-5118522.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Backpackers hiking along a forest trail" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">hiking</span>
+            <h3>Hiking &amp; Nature Trails</h3>
+            <p>From short coastal walks to longer inland routes, hiking options range widely in difficulty. Sturdy footwear, water and a guide familiar with current trail conditions are worth arranging in advance.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- Spotlight: Photography & Scenic Viewpoints (light variant) ---- -->
+  <section class="split reveal">
+    <div class="container split__grid">
+      <div class="split__content">
+        <p class="eyebrow eyebrow--mono">scenic</p>
+        <h2 class="section-title">Photography &amp; Scenic Viewpoints</h2>
+        <p>Between coastline, harbour views around Madang Town, and rainforest-covered hills inland, the province offers a wide range of scenery for photography — early morning and late afternoon light are generally the most rewarding for coastal shots. A local guide can also point out viewpoints that aren't obvious from the road.</p>
+        <a href="#water-islands" class="btn btn--outline">See Island &amp; Coastal Views</a>
+      </div>
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/30447886/pexels-photo-30447886.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Aerial view of a tropical beach lined with palm trees" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WATER & ISLANDS ============ -->
+  <section class="destinations reveal" id="water-islands">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">water &amp; islands</p>
+        <h2 class="section-title">On, In and Under the Water</h2>
+        <p class="section-lead">Madang's coastline and offshore islands are where a lot of visitors spend most of their time — coral reefs, calm lagoons and open ocean all sit within reach of Madang Town.</p>
+      </div>
+
+      <div class="tag-row" aria-hidden="true">
+        <span class="tag">Island Hopping</span>
+        <span class="tag">Diving &amp; Snorkeling</span>
+        <span class="tag">Boat Rides</span>
+        <span class="tag">Beaches</span>
+        <span class="tag">Fishing</span>
+      </div>
+
+      <div class="exp-grid">
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/30793026/pexels-photo-30793026.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Tropical beach with a single palm tree under a blue sky" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">islands</span>
+            <h3>Island Hopping</h3>
+            <p>Small offshore islands, lagoons and sandy cays are scattered along the coast, many reachable by boat from Madang Town for a half or full day out on the water.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/3635910/pexels-photo-3635910.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Colorful coral reef underwater" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">fishing</span>
+            <h3>Fishing Experiences</h3>
+            <p>From reef fishing close to shore to open-water trips further out, local operators can generally arrange fishing trips suited to different experience levels.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+        <article class="exp-card">
+          <div class="exp-card__media">
+            <img src="https://images.pexels.com/photos/33742008/pexels-photo-33742008.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Tropical beach lined with palm trees under a clear sky" loading="lazy">
+          </div>
+          <div class="exp-card__body">
+            <span class="eyebrow eyebrow--mono">beaches</span>
+            <h3>Beaches &amp; Coastal Adventures</h3>
+            <p>Beyond swimming and sunbathing, the coastline offers kayaking, beach walks and quiet stretches of sand well away from any crowds.</p>
+          </div>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- Spotlight: Diving & Snorkeling (dark variant) ---- -->
+  <section class="split split--dark reveal">
+    <div class="container split__grid">
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/5008884/pexels-photo-5008884.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A diver exploring a coral reef underwater" loading="lazy">
+      </div>
+      <div class="split__content">
+        <p class="eyebrow eyebrow--mono eyebrow--light">underwater</p>
+        <h3 class="section-title section-title--light">Snorkeling, Diving &amp; Marine Life</h3>
+        <p>Warm, clear water and healthy coral gardens have made Madang a long-standing destination for divers and snorkellers. Options generally range from shallow reef snorkeling suited to beginners through to boat dives further offshore for certified divers — check current operator availability and certification requirements before booking.</p>
+        <a href="#water-islands" class="btn btn--outline-light">Back to Water &amp; Islands</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- Spotlight: Boat Rides — River & Ocean Adventures (light variant, reversed) ---- -->
+  <section class="split split--reverse reveal">
+    <div class="container split__grid">
+      <div class="split__content">
+        <p class="eyebrow eyebrow--mono">on the water</p>
+        <h2 class="section-title">Boat Rides — River &amp; Ocean Adventures</h2>
+        <p>Traditional and modern boats connect Madang Town to nearby islands and coastal communities, and also provide access to quieter river and mangrove stretches inland from the coast. A boat trip is often the easiest way to reach the more remote parts of the province.</p>
+        <a href="index.html#plan" class="btn btn--outline">Plan Your Trip</a>
+      </div>
+      <div class="split__media">
+        <img src="https://images.pexels.com/photos/29263184/pexels-photo-29263184.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Traditional wooden boat on a calm river" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta">
+    <div class="final-cta__media">
+      <img src="https://images.pexels.com/photos/17100727/pexels-photo-17100727.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Coral reef and tropical fish underwater near an island" loading="lazy">
+      <div class="final-cta__overlay"></div>
+    </div>
+    <div class="final-cta__content">
+      <h2>Ready to Plan Your Days in Madang?</h2>
+      <p>Pair these experiences with a place to stay and settle on when to visit — the Plan Your Trip section has the practical details to get started.</p>
+      <a href="index.html#plan" class="btn btn--coral btn--lg">Plan Your Trip</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (same structure as index.html) ============ -->
+<footer class="footer">
+  <div class="wave-divider wave-divider--footer" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,40 L1440,0 L0,0 Z"></path></svg></div>
+
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="nav__brand-text nav__brand-text--footer">Madang<em>PNG</em></span>
+      <p>Discover Madang Province, Papua New Guinea.</p>
+      <div class="footer__social" aria-label="Social media">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.2 3.58c-2.5 0-4.2 1.5-4.2 4.3v2.02H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="index.html#discover">Discover</a>
+      <a href="index.html#destinations">Destinations</a>
+      <a href="index.html#culture">Culture</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Explore</h4>
+      <a href="#culture-experiences">Culture &amp; Community</a>
+      <a href="#nature-wildlife">Nature &amp; Wildlife</a>
+      <a href="#water-islands">Water &amp; Islands</a>
+      <a href="index.html#destinations">Offshore Islands</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Travel</h4>
+      <a href="index.html#plan">Plan Your Trip</a>
+      <a href="accommodation.html">Accommodation &amp; Food</a>
+      <a href="accommodation.html#stay">Where to Stay</a>
+      <a href="accommodation.html#eat">What to Eat</a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>&copy; <span id="year"></span> Madang Tourism. All rights reserved.</p>
+    <p class="footer__note">Independent tourism guide · Not an official government site</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
+
+<script src="script.js"></script> <!-- Same shared script used by all three pages -->
+</body>
+</html>
