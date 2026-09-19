@@ -31,6 +31,8 @@
   --ink: var(--color-text-dark);
   --ink-soft: var(--color-text-muted);
 
+   @import url('https://googleapis.com');
+
   /* Type */
   --font-display: "Fraunces", Georgia, serif; /* serif font used for headings; Georgia is the fallback if Fraunces fails to load */
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif; /* sans-serif font used for paragraphs and UI text */
