@@ -11,16 +11,18 @@ document.addEventListener('DOMContentLoaded', () => { // waits until the HTML is
   /* ---------- Mobile menu: toggle open/closed state across devices ---------- */
   const navToggle = document.getElementById('navToggle');
   const navBurger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
   const nav = document.querySelector('.nav');
   const faqDrawer = document.getElementById('faqDrawer');
   const faqToggle = document.querySelector('.nav__faq-toggle');
   const faqClose = document.querySelector('.faq__close');
 
   const setMenuState = (isOpen) => {
-    if (!navToggle || !navBurger) return;
+    if (!navToggle || !navBurger || !navLinks) return;
 
     navToggle.checked = isOpen;
     navBurger.classList.toggle('is-open', isOpen);
+    navLinks.classList.toggle('is-open', isOpen);
     navBurger.setAttribute('aria-expanded', String(isOpen));
     navBurger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     nav?.classList.toggle('is-open', isOpen);
@@ -42,10 +44,19 @@ document.addEventListener('DOMContentLoaded', () => { // waits until the HTML is
       }
       setMenuState(!navToggle.checked);
     });
+
     navToggle.addEventListener('change', () => setMenuState(navToggle.checked));
 
     document.querySelectorAll('.nav__links .nav__link').forEach(link => {
       link.addEventListener('click', () => setMenuState(false));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navLinks || !navBurger) return;
+      const clickedInsideNav = navLinks.contains(event.target) || navBurger.contains(event.target);
+      if (navToggle.checked && !clickedInsideNav) {
+        setMenuState(false);
+      }
     });
 
     document.addEventListener('keydown', (e) => {

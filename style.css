@@ -141,7 +141,7 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
 
 /* ================= NAV ================= */
 .nav {
-  position: fixed; top: 0px; left: 0; width: 100%; z-index: 1000; /* keeps the nav pinned to the top of the viewport, just below the tide line */
+  position: fixed; top: 0px; left: 0; width: 100%; z-index: 1000; overflow: visible; /* keeps the nav pinned to the top of the viewport, just below the tide line */
   background: rgba(30, 41, 59, 0.62); backdrop-filter: blur(6px); /* softened deep-slate background for a welcoming tropical brand feel */
   animation: nav-solidify linear both; /* smoothly swaps the transparent hero-top nav for a solid, blurred bar as the page scrolls */
   animation-timeline: scroll(root); /* tracks the page's overall scroll progress */
@@ -152,7 +152,7 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
   to { background: rgba(30, 41, 59, 0.94); backdrop-filter: blur(14px); box-shadow: 0 8px 30px -18px rgba(15, 23, 42, 0.38); }
 }
 .nav__inner {
-  max-width: var(--container-w); margin: 0 auto; padding: 22px 32px; /* centers and pads the nav content to match the container width */
+  position: relative; max-width: var(--container-w); margin: 0 auto; padding: 22px 32px; /* centers and pads the nav content to match the container width */
   display: flex; align-items: center; justify-content: space-between; /* lays out logo, links and actions in a row with space between them */
   gap: 20px;
   animation: nav-inner-solidify linear both; /* shrinks the nav's padding in step with the same scroll range as the background change above */
@@ -235,7 +235,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
   background: linear-gradient(180deg, rgba(30,41,59,0.52) 0%, rgba(30,41,59,0.38) 35%, rgba(17,24,39,0.82) 100%); /* deep-slate gradient keeps contrast but softens the starkness */
 }
 .hero__content { position: relative; z-index: 1; max-width: 760px; padding: 0 32px 110px; margin-left: 5vw; } /* positions the text above the overlay, limits its width, offsets it slightly from the left edge */
-.hero__title { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-bottom: 22px; } /* large, responsive headline size with slightly tightened letter spacing */
+.hero__title { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-bottom: 22px; text-shadow: 0 0 8px rgba(0, 0, 0, 0.5)} /* large, responsive headline size with slightly tightened letter spacing */
 .madang { color: var(--tide); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); } /* colors the "Madang" word in the hero headline turquoise, overriding the default white */
 .hero__desc { max-width: 55ch; font-size: 1.08rem; color: rgba(255,255,255,0.9); margin-bottom: 34px; } /* supporting paragraph sizing, width limit and near-white color */
 .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; } /* lays the two hero buttons side by side, wrapping onto a new line if needed */
@@ -494,10 +494,43 @@ body.faq-open { overflow: hidden; }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1080px) {
-  .nav__inner { gap: 18px; padding-inline: 18px; }
+  .nav__inner { gap: 18px; padding-inline: 18px; position: relative; } /* position:relative so the dropdown below can anchor to the header bar */
   .nav__links {
+    position: fixed; /* anchors to the viewport so the panel floats below the header instead of being tied to the row layout */
+    top: 72px; /* approximate header height, so the panel starts right under the nav bar */
+    right: 12px; /* small gap from the edge so the rounded corners read as a floating card */
+    left: auto;
+    width: min(280px, 75vw); /* a narrow overlay panel, not a full-screen block */
+    height: auto; /* sizes to fit its content instead of stretching to the bottom of the screen */
     display: none;
+    flex-direction: column; /* stacks the links vertically once open */
+    align-items: center;
+    background-color: rgba(27, 38, 59, 0.4); /* 60% transparent so the page behind shows through */
+    backdrop-filter: blur(8px); /* keeps the text legible over whatever scrolls behind the see-through panel */
+    border-radius: 16px;
+    padding: 1.5rem 0;
+    margin-left: 0;
+    gap: 0;
+    z-index: 10;
+    box-shadow: 0 12px 30px -10px rgba(0,0,0,0.4); /* separates the panel visually from the page behind it */
   }
+  .nav__links.is-open,
+  .nav.is-open .nav__links,
+  .nav:has(.menu-toggle:checked) .nav__links {
+    display: flex;
+  }
+  .nav__link {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 0;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.92);
+  }
+  .nav__link::after { display: none; }
+  .nav__faq-toggle {
+    background: transparent; border: none; padding: 0; width: 100%; text-align: center;
+  }
+  .nav__faq-toggle:hover { background: transparent; transform: none; }
   .nav__burger { display: flex; }
   .nav__actions { gap: 10px; }
   .nav__actions .btn--sm { padding-inline: 0.9rem; }
@@ -505,20 +538,8 @@ body.faq-open { overflow: hidden; }
 
 @media (max-width: 760px) { /* styles applied on typical mobile phone widths */
   html { scroll-padding-top: 70px; } /* reduces the anchor-scroll offset to match the shorter mobile nav */
-  .nav__links {
-    position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px); /* turns the nav links into a full-height slide-in panel from the right */
-    background: var(--reef-deep); flex-direction: column; align-items: flex-start; /* dark background with links stacked vertically */
-    padding: 110px 32px 40px; gap: 26px; /* spacing inside the mobile menu panel */
-    transform: translateX(100%); transition: transform 0.4s var(--ease); /* starts off-screen to the right, ready to slide in */
-    margin-left: 0;
-  }
-  .nav__links.is-open,
-  .nav.is-open .nav__links,
-  .nav:has(.menu-toggle:checked) .nav__links { transform: translateX(0); box-shadow: -20px 0 50px -20px rgba(0,0,0,0.5); } /* slides the panel into view and adds a shadow, whether toggled by JS or the checkbox state */
-  .nav__link { font-size: 1.05rem; } /* slightly larger tap targets for mobile links */
   .nav__burger { display: flex; } /* shows the hamburger button only at this screen size */
   .nav__actions .btn--sm { display: none; } /* hides the "Explore Now" button in the nav bar on mobile to reduce clutter */
-
   .hero__content { margin-left: 0; padding: 0 22px 90px; } /* removes the left offset and reduces side padding on small screens */
   .quicknav { margin-top: -50px; } /* reduces the overlap amount for the quick-nav cards on mobile */
   .quicknav__grid { grid-template-columns: 1fr; } /* stacks quick-nav cards into a single column */
