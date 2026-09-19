@@ -1,6 +1,6 @@
 /* ==========================================================================
    MADANG PROVINCE TOURISM — STYLESHEET
-   Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Cooper Black
+   Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Bookman Old Style
    Signature element: the "tide line" — a wave-shaped scroll progress indicator
    ========================================================================== */
 
@@ -34,7 +34,7 @@
   /* Type */
   --font-display: "Fraunces", Georgia, serif; /* serif font used for headings; Georgia is the fallback if Fraunces fails to load */
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif; /* sans-serif font used for paragraphs and UI text */
-  --font-cooper: "Cooper Black", Cooper, Georgia, serif; /* heavy serif font used for bold headlines/eyebrows for a playful, retro feel */
+  --font-retro-soft: "Fraunces", "Bookman Old Style", Georgia, serif; /* soft serif font used for headlines/eyebrows for a playful, retro feel without the heavy bold weight */
 
 
   /* Layout */
@@ -93,7 +93,7 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
 /* ================= TYPE UTILITIES ================= */
 .eyebrow {
   display: inline-block; /* lets the eyebrow label sit on its own line with block-like spacing while staying inline-sized */
-  font-family: var(--font-cooper); /* uses the cooperspace font for a label/data feel */
+  font-family: var(--font-retro-soft); /* uses the retro-soft font for a label/data feel */
   font-size: 0.72rem; /* small text size */
   letter-spacing: 0.14em; /* wide letter spacing for an uppercase-label look */
   text-transform: uppercase; /* forces the text to render in capital letters */
@@ -101,8 +101,8 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
   margin-bottom: 14px; /* space below the label before the next element */
 }
 .eyebrow--light { color: var(--tide); } /* lighter/brighter variant used on dark backgrounds */
-.eyebrow--cooper { color: var(--coral); } /* coral-colored variant used for category tags */
-.eyebrow--cooper.eyebrow--light { color: #fff; opacity: 0.85; } /* combined variant used for tags over photos */
+.eyebrow--retro-soft { color: var(--coral); } /* coral-colored variant used for category tags */
+.eyebrow--retro-soft.eyebrow--light { color: #fff; opacity: 0.85; } /* combined variant used for tags over photos */
 
 .section-title {
   font-size: clamp(1.9rem, 3.4vw, 2.75rem); /* responsive font size that scales between a minimum and maximum based on viewport width */
@@ -244,7 +244,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 .hero__scroll {
   position: absolute; bottom: 28px; right: 40px; z-index: 1; /* pins the scroll indicator to the bottom-right of the hero */
   display: flex; flex-direction: column; align-items: center; gap: 10px; /* stacks the dot above its label, centered */
-  color: rgba(255,255,255,0.85); font-family: var(--font-cooper); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; /* small uppercase cooper label styling */
+  color: rgba(255,255,255,0.85); font-family: var(--font-retro-soft); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; /* small uppercase retro-soft label styling */
 }
 .hero__scroll-dot {
   width: 10px; height: 10px; border-radius: 50%; background: var(--tide); /* a small turquoise circle */
@@ -348,7 +348,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 }
 .why-entry:last-child { border-right: none; } /* removes the divider after the final entry so it doesn't dangle */
 .why-entry__mark {
-  font-family: var(--font-cooper); font-size: 0.8rem; color: var(--coral); display: block; margin-bottom: 14px; /* small coral cooper "log number" label above each entry heading */
+  font-family: var(--font-retro-soft); font-size: 0.8rem; color: var(--coral); display: block; margin-bottom: 14px; /* small coral retro-soft "log number" label above each entry heading */
 }
 .why-entry h3 { font-size: 1.15rem; margin-bottom: 10px; } /* entry heading size and spacing */
 .why-entry p { color: var(--ink-soft); font-size: 0.92rem; } /* muted entry description text */
@@ -401,7 +401,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 }
 .plan-card__summary::-webkit-details-marker { display: none; } /* removes Safari/Chrome's default triangle marker so the custom one below can take its place */
 .plan-card__summary::after {
-  content: "+"; position: absolute; top: 26px; right: 22px; font-family: var(--font-cooper); font-size: 1.2rem; color: var(--coral); /* a small "+" indicator standing in for the old chevron/expand cue */
+  content: "+"; position: absolute; top: 26px; right: 22px; font-family: var(--font-retro-soft); font-size: 1.2rem; color: var(--coral); /* a small "+" indicator standing in for the old chevron/expand cue */
   transition: transform 0.3s var(--ease); /* animates the rotation below */
 }
 .plan-card[open] .plan-card__summary::after { transform: rotate(45deg); } /* rotates the "+" into an "×" shape once the card is open, using the native [open] attribute — no JS needed */
@@ -438,7 +438,7 @@ body.faq-open { overflow: hidden; }
 .accordion__trigger::-webkit-details-marker { display: none; } /* removes Safari/Chrome's default triangle marker so the custom "+" icon below can take its place */
 .accordion__trigger h3 { font: inherit; color: inherit; margin: 0; } /* the question text sits inside an <h3> for document-outline/screen-reader navigation purposes, but should look identical to plain text on the summary */
 .accordion__icon {
-  font-family: var(--font-cooper); color: var(--coral); font-size: 1.3rem; flex-shrink: 0; margin-left: 16px; /* coral cooper "+" icon that won't shrink and has space from the question text */
+  font-family: var(--font-retro-soft); color: var(--coral); font-size: 1.3rem; flex-shrink: 0; margin-left: 16px; /* coral retro-soft "+" icon that won't shrink and has space from the question text */
   transition: transform 0.3s var(--ease); /* smoothly animates the rotation when the answer opens */
 }
 .accordion__item[open] .accordion__icon { transform: rotate(45deg); } /* rotates the "+" into an "×" shape once the <details> is open, using the native [open] attribute — no JS needed */
@@ -465,7 +465,7 @@ body.faq-open { overflow: hidden; }
   transition: background 0.3s var(--ease); /* smooth hover color transition */
 }
 .footer__social a:hover { background: var(--tide); color: var(--reef-deep); } /* inverts colors on hover for visual feedback */
-.footer__col h4 { font-family: var(--font-cooper); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide); margin-bottom: 18px; } /* small uppercase cooper column heading in turquoise */
+.footer__col h4 { font-family: var(--font-retro-soft); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide); margin-bottom: 18px; } /* small uppercase retro-soft column heading in turquoise */
 .footer__col a { display: block; margin-bottom: 12px; font-size: 0.92rem; transition: color 0.25s var(--ease); } /* stacks footer links vertically with spacing and a smooth hover color change */
 .footer__col a:hover { color: #fff; } /* brightens footer links on hover */
 .footer__bottom {
@@ -589,7 +589,7 @@ body.faq-open { overflow: hidden; }
 /* ---- Breadcrumb: small wayfinding trail under the nav on interior pages ---- */
 .breadcrumb {
   display: flex; align-items: center; gap: 8px; /* lays the crumb items out in a row */
-  font-family: var(--font-cooper); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small cooper label styling matching the eyebrow style */
+  font-family: var(--font-retro-soft); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small retro-soft label styling matching the eyebrow style */
   color: rgba(255,255,255,0.75); position: relative; z-index: 1; /* sits above the hero image/overlay */
 }
 .breadcrumb a { color: rgba(255,255,255,0.75); transition: color 0.25s var(--ease); } /* muted link color with a smooth hover transition */
@@ -605,7 +605,7 @@ body.faq-open { overflow: hidden; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; } /* lays tags out in a wrapping row with spacing below before the cards */
 .tag {
   display: inline-flex; align-items: center; padding: 8px 18px; border-radius: 100px; /* pill shape */
-  background: var(--sand); color: var(--lagoon); font-family: var(--font-cooper); font-size: 0.75rem; /* sandy background with cooper teal text, matching the eyebrow/cooper styling elsewhere */
+  background: var(--sand); color: var(--lagoon); font-family: var(--font-retro-soft); font-size: 0.75rem; /* sandy background with retro-soft teal text, matching the eyebrow/retro-soft styling elsewhere */
   letter-spacing: 0.04em; border: 1px solid rgba(16,88,90,0.15); /* faint border to define the pill edge */
 }
 .tag--light { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3); } /* variant used for tag rows over dark sections */
