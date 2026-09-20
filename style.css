@@ -1,6 +1,6 @@
 /* ==========================================================================
    MADANG PROVINCE TOURISM — STYLESHEET
-   Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Bookman Old Style
+   Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Space Mono
    Signature element: the "tide line" — a wave-shaped scroll progress indicator
    ========================================================================== */
 
@@ -31,13 +31,10 @@
   --ink: var(--color-text-dark);
   --ink-soft: var(--color-text-muted);
 
-   @import url('https://googleapis.com');
-
   /* Type */
   --font-display: "Fraunces", Georgia, serif; /* serif font used for headings; Georgia is the fallback if Fraunces fails to load */
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif; /* sans-serif font used for paragraphs and UI text */
-  --font-retro-soft: "Fraunces", "Bookman Old Style", Georgia, serif; /* soft serif font used for headlines/eyebrows for a playful, retro feel without the heavy bold weight */
-
+  --font-cooper: "Cooper Black", Cooper, Georgia, serif; /* heavy serif font used for bold headlines/eyebrows for a playful, retro feel */
 
   /* Layout */
   --container-w: 1240px; /* maximum width for centered page content */
@@ -66,7 +63,7 @@ a { color: inherit; text-decoration: none; } /* links inherit surrounding text c
 ul { list-style: none; margin: 0; padding: 0; } /* removes default bullet points and spacing from unordered lists */
 button { font: inherit; cursor: pointer; } /* buttons use the page font instead of the browser default, and show a pointer cursor */
 h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; line-height: 1.12; font-weight: 500; } /* headings use the serif display font, no default margin, tight line spacing */
-p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comfortable line spacing for readability */
+p { margin: 0; line-height: 1.7;} /* paragraphs have no default margin and comfortable line spacing for readability */
 
 @media (prefers-reduced-motion: reduce) { /* applies only when the user's OS setting requests less motion */
   *, *::before, *::after {
@@ -95,7 +92,7 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
 /* ================= TYPE UTILITIES ================= */
 .eyebrow {
   display: inline-block; /* lets the eyebrow label sit on its own line with block-like spacing while staying inline-sized */
-  font-family: var(--font-retro-soft); /* uses the retro-soft font for a label/data feel */
+  font-family: var(--font-mono); /* uses the monospace font for a label/data feel */
   font-size: 0.72rem; /* small text size */
   letter-spacing: 0.14em; /* wide letter spacing for an uppercase-label look */
   text-transform: uppercase; /* forces the text to render in capital letters */
@@ -103,8 +100,8 @@ p { margin: 0; line-height: 1.7; } /* paragraphs have no default margin and comf
   margin-bottom: 14px; /* space below the label before the next element */
 }
 .eyebrow--light { color: var(--tide); } /* lighter/brighter variant used on dark backgrounds */
-.eyebrow--retro-soft { color: var(--coral); } /* coral-colored variant used for category tags */
-.eyebrow--retro-soft.eyebrow--light { color: #fff; opacity: 0.85; } /* combined variant used for tags over photos */
+.eyebrow--mono { color: var(--coral); } /* coral-colored variant used for category tags */
+.eyebrow--mono.eyebrow--light { color: #fff; opacity: 0.85; } /* combined variant used for tags over photos */
 
 .section-title {
   font-size: clamp(1.9rem, 3.4vw, 2.75rem); /* responsive font size that scales between a minimum and maximum based on viewport width */
@@ -225,6 +222,19 @@ body[data-page="accommodation"] .nav__link[data-page="accommodation"]::after {
 body.menu-open,
 body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling behind the open mobile menu in browsers with or without :has() support */
 
+.bg-shape {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background-color: #007bff;
+  border-radius: 50%; /* Creates a circle */
+  
+  z-index: -1; /* Places it behind other content */
+  opacity: 0.2; /* Fades the shape out (0 is invisible, 1 is full opacity) */
+  filter: blur(40px); /* Optional: creates a soft, glowing faded edge */
+}
 
 /* ================= HERO ================= */
 .hero {
@@ -246,7 +256,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 .hero__scroll {
   position: absolute; bottom: 28px; right: 40px; z-index: 1; /* pins the scroll indicator to the bottom-right of the hero */
   display: flex; flex-direction: column; align-items: center; gap: 10px; /* stacks the dot above its label, centered */
-  color: rgba(255,255,255,0.85); font-family: var(--font-retro-soft); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; /* small uppercase retro-soft label styling */
+  color: rgba(255,255,255,0.85); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; /* small uppercase mono label styling */
 }
 .hero__scroll-dot {
   width: 10px; height: 10px; border-radius: 50%; background: var(--tide); /* a small turquoise circle */
@@ -308,7 +318,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
   position: relative; /* allows the arrow badge to be positioned within the card */
   transition: transform 0.4s var(--ease), border-color 0.4s var(--ease); /* smooth hover lift and border color change */
 }
-.exp-card:hover { transform: translateY(-6px); border-color: var(--tide); } /* lifts the card and highlights its border on hover */
+.exp-card:hover { transform: translateY(-6px); box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); } /* lifts the card and highlights its border on hover */
 .exp-card__media { aspect-ratio: 4/3; overflow: hidden; } /* fixed image aspect ratio with overflow hidden for the zoom effect below */
 .exp-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); } /* image fills its box and transitions smoothly when scaled */
 .exp-card:hover .exp-card__media img { transform: scale(1.08); } /* subtly zooms the image in when the card is hovered */
@@ -321,6 +331,8 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
   transition: background 0.35s var(--ease), transform 0.35s var(--ease); /* smooth hover color and rotation change */
 }
 .exp-card:hover .exp-card__arrow { background: var(--coral); transform: rotate(45deg); } /* turns the badge coral and rotates the arrow to point outward on hover */
+p.exp__para {color: var(--ink-soft);}
+h3.exp__heading {color: var(--ink);}
 
 /* ================= DESTINATIONS ================= */
 .destinations { padding: 100px 0; background: var(--shell); } /* vertical spacing and light background for this section */
@@ -350,7 +362,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 }
 .why-entry:last-child { border-right: none; } /* removes the divider after the final entry so it doesn't dangle */
 .why-entry__mark {
-  font-family: var(--font-retro-soft); font-size: 0.8rem; color: var(--coral); display: block; margin-bottom: 14px; /* small coral retro-soft "log number" label above each entry heading */
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--coral); display: block; margin-bottom: 14px; /* small coral mono "log number" label above each entry heading */
 }
 .why-entry h3 { font-size: 1.15rem; margin-bottom: 10px; } /* entry heading size and spacing */
 .why-entry p { color: var(--ink-soft); font-size: 0.92rem; } /* muted entry description text */
@@ -403,7 +415,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
 }
 .plan-card__summary::-webkit-details-marker { display: none; } /* removes Safari/Chrome's default triangle marker so the custom one below can take its place */
 .plan-card__summary::after {
-  content: "+"; position: absolute; top: 26px; right: 22px; font-family: var(--font-retro-soft); font-size: 1.2rem; color: var(--coral); /* a small "+" indicator standing in for the old chevron/expand cue */
+  content: "+"; position: absolute; top: 26px; right: 22px; font-family: var(--font-mono); font-size: 1.2rem; color: var(--coral); /* a small "+" indicator standing in for the old chevron/expand cue */
   transition: transform 0.3s var(--ease); /* animates the rotation below */
 }
 .plan-card[open] .plan-card__summary::after { transform: rotate(45deg); } /* rotates the "+" into an "×" shape once the card is open, using the native [open] attribute — no JS needed */
@@ -440,7 +452,7 @@ body.faq-open { overflow: hidden; }
 .accordion__trigger::-webkit-details-marker { display: none; } /* removes Safari/Chrome's default triangle marker so the custom "+" icon below can take its place */
 .accordion__trigger h3 { font: inherit; color: inherit; margin: 0; } /* the question text sits inside an <h3> for document-outline/screen-reader navigation purposes, but should look identical to plain text on the summary */
 .accordion__icon {
-  font-family: var(--font-retro-soft); color: var(--coral); font-size: 1.3rem; flex-shrink: 0; margin-left: 16px; /* coral retro-soft "+" icon that won't shrink and has space from the question text */
+  font-family: var(--font-mono); color: var(--coral); font-size: 1.3rem; flex-shrink: 0; margin-left: 16px; /* coral mono "+" icon that won't shrink and has space from the question text */
   transition: transform 0.3s var(--ease); /* smoothly animates the rotation when the answer opens */
 }
 .accordion__item[open] .accordion__icon { transform: rotate(45deg); } /* rotates the "+" into an "×" shape once the <details> is open, using the native [open] attribute — no JS needed */
@@ -467,7 +479,7 @@ body.faq-open { overflow: hidden; }
   transition: background 0.3s var(--ease); /* smooth hover color transition */
 }
 .footer__social a:hover { background: var(--tide); color: var(--reef-deep); } /* inverts colors on hover for visual feedback */
-.footer__col h4 { font-family: var(--font-retro-soft); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide); margin-bottom: 18px; } /* small uppercase retro-soft column heading in turquoise */
+.footer__col h4 { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tide); margin-bottom: 18px; } /* small uppercase mono column heading in turquoise */
 .footer__col a { display: block; margin-bottom: 12px; font-size: 0.92rem; transition: color 0.25s var(--ease); } /* stacks footer links vertically with spacing and a smooth hover color change */
 .footer__col a:hover { color: #fff; } /* brightens footer links on hover */
 .footer__bottom {
@@ -520,7 +532,7 @@ body.faq-open { overflow: hidden; }
   .nav__links.is-open,
   .nav.is-open .nav__links,
   .nav:has(.menu-toggle:checked) .nav__links {
-    display: flex;
+    display: flex; background-color: rgba(27, 38, 59, 0.8); /* darkens the panel when open so the links are easier to read */
   }
   .nav__link {
     width: 100%;
@@ -591,7 +603,7 @@ body.faq-open { overflow: hidden; }
 /* ---- Breadcrumb: small wayfinding trail under the nav on interior pages ---- */
 .breadcrumb {
   display: flex; align-items: center; gap: 8px; /* lays the crumb items out in a row */
-  font-family: var(--font-retro-soft); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small retro-soft label styling matching the eyebrow style */
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small mono label styling matching the eyebrow style */
   color: rgba(255,255,255,0.75); position: relative; z-index: 1; /* sits above the hero image/overlay */
 }
 .breadcrumb a { color: rgba(255,255,255,0.75); transition: color 0.25s var(--ease); } /* muted link color with a smooth hover transition */
@@ -605,9 +617,28 @@ body.faq-open { overflow: hidden; }
 
 /* ---- Tag row: small pill-shaped category labels shown above a card grid ---- */
 .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; } /* lays tags out in a wrapping row with spacing below before the cards */
+/* Ensure individual tags support cursor pointer and smooth transitions */
+.tag-row span {
+  cursor: pointer;
+  display: inline-block; /* ensures hover effects, padding, and transforms register properly */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover state for individual tags */
+.tag-row span:hover {
+  color: var(--coral-deep, #c85a17);
+  background-color: #ffe6d5; /* slightly darker background tint on hover */
+  border-color: var(--coral-deep, #c85a17);
+  transform: translateY(-1px); /* subtle lift effect */
+}
+
+/* Active / Clicked state */
+.tag-row span:active {
+  transform: translateY(0);
+}
 .tag {
   display: inline-flex; align-items: center; padding: 8px 18px; border-radius: 100px; /* pill shape */
-  background: var(--sand); color: var(--lagoon); font-family: var(--font-retro-soft); font-size: 0.75rem; /* sandy background with retro-soft teal text, matching the eyebrow/retro-soft styling elsewhere */
+  background: var(--sand); color: var(--lagoon); font-family: var(--font-mono); font-size: 0.75rem; /* sandy background with mono teal text, matching the eyebrow/mono styling elsewhere */
   letter-spacing: 0.04em; border: 1px solid rgba(16,88,90,0.15); /* faint border to define the pill edge */
 }
 .tag--light { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3); } /* variant used for tag rows over dark sections */
