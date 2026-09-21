@@ -2,6 +2,10 @@
    MADANG PROVINCE TOURISM — STYLESHEET
    Design tokens: ocean-forward palette, Fraunces + Plus Jakarta Sans + Space Mono
    Signature element: the "tide line" — a wave-shaped scroll progress indicator
+
+   File purpose: shared visual design for all pages in the Madang tourism site.
+   This stylesheet defines the full layout, typography, spacing, responsive rules,
+   and reusable component styling used by the homepage and sub-pages.
    ========================================================================== */
 
 :root { /* :root targets the whole document so these custom properties (variables) are available everywhere */
@@ -34,6 +38,7 @@
   /* Type */
   --font-display: "Fraunces", Georgia, serif; /* serif font used for headings; Georgia is the fallback if Fraunces fails to load */
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif; /* sans-serif font used for paragraphs and UI text */
+  --font-mono: "Space Mono", "Courier New", monospace; /* monospace font used for labels, metadata and compact UI text */
   --font-cooper: "Cooper Black", Cooper, Georgia, serif; /* heavy serif font used for bold headlines/eyebrows for a playful, retro feel */
 
   /* Layout */
@@ -47,7 +52,11 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1); /* custom easing curve reused by all transitions for a consistent, smooth feel */
 } /* end :root variable declarations */
 
-/* ================= RESET ================= */
+/* ============================================================
+   BASE STYLES AND RESET
+   These rules establish the shared spacing, typography, and element defaults
+   used across every page in the Madang tourism website.
+   ============================================================ */
 *, *::before, *::after { box-sizing: border-box; } /* makes padding/border count inside an element's declared width, avoiding layout surprises */
 html { scroll-behavior: smooth; scroll-padding-top: 90px; } /* enables smooth in-page scrolling and offsets anchor targets so the fixed nav doesn't cover them */
 body {
@@ -236,7 +245,12 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
   filter: blur(40px); /* Optional: creates a soft, glowing faded edge */
 }
 
-/* ================= HERO ================= */
+/* ============================================================
+   HERO SECTION
+   Full-viewport banner with an image background, overlay, and layered text.
+   This is the main visual focus of the home page and the standard hero format
+   reused by the interior pages.
+   ============================================================ */
 .hero {
   position: relative; min-height: 100svh; display: flex; align-items: flex-end; /* full-viewport-height section with content anchored to the bottom */
   color: #fff; overflow: hidden; /* white text by default; hides anything that overflows the section bounds */
@@ -428,7 +442,11 @@ h3.exp__heading {color: var(--ink);}
 
 .plan-cta { text-align: center; margin-top: 50px; } /* centers the "Start Planning" button with space above it */
 
-/* ================= FAQ / ACCORDION ================= */
+/* ============================================================
+   FAQ DRAWER / ACCORDION
+   The floating FAQ panel is hidden by default and opens only when the user
+   triggers it from the navigation or mobile menu.
+   ============================================================ */
 .faq {
   position: fixed; right: 24px; bottom: 24px; z-index: 1200; width: min(440px, calc(100vw - 28px));
   max-height: calc(100vh - 100px); overflow: auto; padding: 22px 22px 10px; background: rgba(250, 247, 242, 0.97);
@@ -507,7 +525,11 @@ body.faq-open { overflow: hidden; }
 }
 @keyframes back-to-top-reveal { to { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; } }
 
-/* ================= RESPONSIVE ================= */
+/* ============================================================
+   RESPONSIVE DESIGN
+   The breakpoints below progressively collapse the desktop layout into a
+   mobile-friendly experience while preserving the same visual theme.
+   ============================================================ */
 @media (max-width: 1080px) {
   .nav__inner { gap: 18px; padding-inline: 18px; position: relative; } /* position:relative so the dropdown below can anchor to the header bar */
   .nav__links {

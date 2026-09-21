@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Culture &amp; Heritage | Discover Madang</title>
-<meta name="description" content="Explore the living culture of Madang Province, Papua New Guinea — weaving, carving and pottery traditions, sing-sing dance and music, one of the world's most linguistically diverse regions, and heritage sites along the coast.">
+<!DOCTYPE html> <!-- Declares the document as HTML5 so the browser uses modern parsing rules. -->
+<html lang="en"> <!-- Sets the page language to English so browsers and assistive tech handle it correctly. -->
+<head> <!-- Begins the metadata section where the page setup and linked resources are defined. -->
+<meta charset="UTF-8"> <!-- Declares the character set so text displays correctly across browsers. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive by matching the viewport width on mobile screens. -->
+<title>Culture &amp; Heritage | Discover Madang</title> <!-- Sets the tab text and page title used in browser tabs and search results. -->
+<meta name="description" content="Explore the living culture of Madang Province, Papua New Guinea — weaving, carving and pottery traditions, sing-sing dance and music, one of the world's most linguistically diverse regions, and heritage sites along the coast."> <!-- Provides the summary shown in search results and social previews. -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Starts a faster connection to Google Fonts before the page requests the font files. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Prepares the font host connection for a faster second-stage load. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> <!-- Loads the custom fonts used across the site. -->
 
-<link rel="stylesheet" href="style.css"> <!-- Same shared stylesheet used by index.html, experiences.html and accommodation.html, so this page inherits the identical design system -->
-</head>
-<body data-page="culture"> <!-- data-page tells the shared script.js to mark "Culture" as the active nav link on load, instead of running homepage scroll-spy -->
+<link rel="stylesheet" href="style.css"> <!-- Links the shared stylesheet that controls the design system and page layout. -->
+</head> <!-- Ends the metadata section before the visible content starts. -->
+<body data-page="culture"> <!-- Starts the visible page content and marks the active navigation item for the script. -->
 
-<!--==========START; FOR FUTURE DEVELOPMENT==========-->
+<!--==========START; FOR FUTURE DEVELOPMENT, NOT FOR CLASS==========-->
 <!-- Tide line — signature scroll progress indicator, identical markup to the other pages 
 <div class="tide-line" aria-hidden="true">
   <svg viewBox="0 0 1200 24" preserveAspectRatio="none" class="tide-line__wave">
@@ -22,20 +22,28 @@
   </svg>
   <div class="tide-line__fill" id="tideFill"></div>
 </div> -->
-<!--==========END; FOR FUTURE DEVELOPMENT==========-->
+<!--==========END; FOR FUTURE DEVELOPMENT, NOT FOR CLASS==========-->
 
+<!-- This skip link helps keyboard users move directly to the main content instead of reading the whole navigation. -->
 <a href="#main" class="skip-link">Skip to content</a>
 
 <!-- ============ NAVIGATION (same structure as the other pages, "Culture" is the current page) ============ -->
+<!-- The site header stays consistent across all pages so visitors can move between sections and pages easily. -->
 <header class="nav" id="siteNav">
   <div class="nav__inner">
+    <!-- Brand area links back to the homepage and includes the Madang coastal logo. -->
     <a href="index.html" class="nav__brand">
       <span class="nav__brand-mark" aria-hidden="true">
-        <path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="10" r="6" fill="currentColor"/></svg>
+        <svg viewBox="0 0 40 40" width="34" height="34">
+          <path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M2 34c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="20" cy="10" r="6" fill="currentColor"/>
+        </svg>
       </span>
       <span class="nav__brand-text">Madang<em>PNG</em></span>
     </a>
 
+    <!-- Main page links show the core site sections and keep the user's location clear. -->
     <nav class="nav__links" id="navLinks" aria-label="Primary">
       <a href="index.html" class="nav__link" data-page="home">Home</a>
       <a href="index.html#destinations" class="nav__link">Destinations</a>
@@ -45,6 +53,7 @@
       <a href="index.html#plan" class="nav__link">Plan A Trip</a>
     </nav>
 
+    <!-- The CTA button and burger menu control the mobile navigation menu. -->
     <div class="nav__actions">
       <a href="index.html#plan" class="btn btn--coral btn--sm">Explore Now</a>
       <input class="menu-toggle" type="checkbox" id="navToggle" aria-label="Toggle navigation">
@@ -58,17 +67,21 @@
 <main id="main">
 
   <!-- ============ PAGE HERO ============ -->
+  <!-- The hero section introduces the topic visually and gives visitors an immediate sense of the page's purpose. -->
   <section class="hero hero--page" id="home">
     <div class="hero__media">
+      <!-- Background image sets the cultural festival mood before the visitor reads the text. -->
       <img src="https://images.pexels.com/photos/32656681/pexels-photo-32656681.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Colorful traditional dancers in costume performing at a cultural festival" loading="eager">
       <div class="hero__overlay"></div>
     </div>
 
     <div class="hero__content">
+      <!-- Breadcrumb helps visitors understand where they are within the site structure. -->
       <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> <span class="breadcrumb__current">Culture &amp; Heritage</span></p>
       <h1 class="hero__title">Culture &amp; <em>Heritage</em></h1>
       <p class="hero__desc">Madang's culture isn't kept behind glass — it's part of daily life along the coast, on the islands and inland. Weaving, carving and pottery traditions continue in the communities that practise them, sing-sing gatherings keep dance and music alive, and the province is home to one of the greatest concentrations of distinct languages found anywhere on Earth.</p>
       <div class="hero__actions">
+        <!-- These buttons guide the visitor to the relevant cultural content further down the page. -->
         <a href="#craft-traditions" class="btn btn--coral">See Craft Traditions</a>
         <a href="experiences.html#culture-experiences" class="btn btn--ghost">Book a Cultural Experience</a>
       </div>
@@ -76,6 +89,7 @@
   </section>
 
   <!-- ============ INTRO ============ -->
+  <!-- This introductory block explains the broader cultural significance before the page moves into details. -->
   <section class="page-intro reveal">
     <div class="container">
       <p class="eyebrow">heritage &amp; tradition</p>
@@ -85,20 +99,24 @@
   </section>
 
   <!-- ============ CRAFT & ARTISAN TRADITIONS ============ -->
+  <!-- This section showcases the three main handmade traditions highlighted on the page and introduces their cultural value. -->
   <section class="experiences reveal" id="craft-traditions">
     <div class="container">
       <div class="section-head">
+        <!-- The label and heading orient the reader to the craft-based cultural focus. -->
         <p class="eyebrow eyebrow--light">craft &amp; artisan traditions</p>
         <h2 class="section-title section-title--light">Weaving, Carving &amp; Pottery</h2>
         <p class="section-lead" style="color: rgba(255,253,248,0.75);">Communities along the Madang coast and islands maintain distinct craft traditions, each tied to particular villages and passed down through families. Buying directly from artisans is the most direct way to support these traditions.</p>
       </div>
 
+      <!-- The tag row provides quick visual keywords for the specific traditions featured here. -->
       <div class="tag-row" aria-hidden="true">
         <span class="tag--light tag">Bilum Weaving</span>
         <span class="tag--light tag">Wood Carving</span>
         <span class="tag--light tag">Pottery</span>
       </div>
 
+      <!-- Each article card summarizes one cultural craft form with a photo, title and short description. -->
       <div class="exp-grid">
 
         <article class="exp-card">
@@ -142,6 +160,7 @@
   </section>
 
   <!-- ---- Spotlight: Language & Oral Tradition (light variant, reversed) ---- -->
+  <!-- This split section shifts attention from making objects to keeping language and stories alive in communities. -->
   <section class="split split--reverse reveal">
     <div class="container split__grid">
       <div class="split__content">
@@ -159,6 +178,7 @@
   <div class="wave-divider wave-divider--to-deep" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"></path></svg></div>
 
   <!-- ============ MUSIC, DANCE & CEREMONY ============ -->
+  <!-- This block explains the communal performing arts that mark celebrations, identity and cultural continuity. -->
   <section class="experiences reveal" id="music-dance">
     <div class="container">
       <div class="section-head">
@@ -167,12 +187,14 @@
         <p class="section-lead" style="color: rgba(255,253,248,0.75);">Communities mark ceremonies and celebrations through "sing-sing" gatherings — occasions built around dance, costume, music and storytelling. Timing varies through the year and by community, so ask locally about what's happening during your visit.</p>
       </div>
 
+      <!-- These visual tags help readers scan the main cultural performance topics quickly. -->
       <div class="tag-row" aria-hidden="true">
         <span class="tag--light tag">Sing-Sing</span>
         <span class="tag--light tag">Traditional Dance</span>
         <span class="tag--light tag">Music &amp; Drums</span>
       </div>
 
+      <!-- Each card introduces one performance form and links it to Madang's living ceremonial culture. -->
       <div class="exp-grid">
 
         <article class="exp-card">
@@ -220,6 +242,7 @@
   </section>
 
   <!-- ---- Spotlight: History & Heritage (dark variant) ---- -->
+  <!-- This feature highlights historic and heritage locations that add context to Madang's broader story. -->
   <section class="split split--dark reveal">
     <div class="container split__grid">
       <div class="split__media">
@@ -235,6 +258,7 @@
   </section>
 
   <!-- ============ VISITING RESPECTFULLY ============ -->
+  <!-- This section gives practical visitor guidance so cultural experiences remain respectful and mutually beneficial. -->
   <section class="destinations reveal">
     <div class="container">
       <div class="section-head">
@@ -243,6 +267,7 @@
         <p class="section-lead">Culture here is lived, not performed for visitors — a few habits go a long way toward being a welcome guest rather than an intrusive one.</p>
       </div>
 
+      <!-- Each information card gives a simple rule that encourages ethical engagement with local communities. -->
       <div class="exp-grid">
 
         <article class="info-card">
@@ -280,6 +305,7 @@
   </section>
 
   <!-- ============ FINAL CTA ============ -->
+  <!-- This closing call-to-action encourages the visitor to continue exploring the site with cultural booking options. -->
   <section class="final-cta">
     <div class="final-cta__media">
       <img src="https://images.pexels.com/photos/32656448/pexels-photo-32656448.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Close-up of hands crafting a traditional hand drum" loading="lazy">
@@ -295,11 +321,13 @@
 </main>
 
 <!-- ============ FOOTER (same structure as the other pages) ============ -->
+<!-- The footer repeats the site branding and gives users a quick way to move to key sections while keeping the page consistent. -->
 <footer class="footer">
   <div class="wave-divider wave-divider--footer" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,40 L1440,0 L0,0 Z"></path></svg></div>
 
   <div class="container footer__grid">
     <div class="footer__brand">
+      <!-- Footer branding reinforces the destination identity and gives a short introduction to the page. -->
       <span class="nav__brand-text nav__brand-text--footer">Madang<em>PNG</em></span>
       <p>Discover Madang Province, Papua New Guinea.</p>
       <div class="footer__social" aria-label="Social media">
@@ -315,6 +343,7 @@
       </div>
     </div>
   
+    <!-- Footer column links help visitors move to important destination and experience sections. -->
     <div class="footer__col"> 
       <h4><a href="index.html#discover">Discover</a></h4>
     </div>
@@ -328,16 +357,19 @@
     </div>
   </div>
 
+  <!-- Footer bottom line includes the copyright year and a disclaimer to set expectations about the site. -->
   <div class="container footer__bottom">
     <p>&copy; <span id="year"></span> Madang Tourism. All rights reserved.</p>
     <p class="footer__note">Independent tourism guide · Not an official government site</p>
   </div>
 </footer>
 
+<!-- Floating back-to-top button lets visitors quickly return to the page start after scrolling. -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
 </button>
 
+<!-- Shared script powers the mobile menu, active nav highlighting, and back-to-top button across the whole website. -->
 <script src="script.js"></script> <!-- Same shared script used by all four pages -->
 </body>
 </html>

@@ -1,149 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accommodation &amp; Food | Discover Madang</title>
-<meta name="description" content="Where to stay and what to eat in Madang Province, Papua New Guinea — from beachfront resorts and guesthouses to fresh seafood and traditional Papua New Guinean food.">
+<!DOCTYPE html> <!-- Declares the document as HTML5 so the browser uses modern parsing rules. -->
+<html lang="en"> <!-- Sets the page language to English so the browser and assistive technology can read it correctly. -->
+<head> <!-- Starts the metadata section where page settings and linked resources are defined. -->
+<meta charset="UTF-8"> <!-- Declares the character set so the browser renders text correctly across the page. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the layout responsive on mobile devices by matching the screen width. -->
+<title>Accommodation &amp; Food | Discover Madang</title> <!-- Sets the browser tab text and search-result title. -->
+<meta name="description" content="Where to stay and what to eat in Madang Province, Papua New Guinea — from beachfront resorts and guesthouses to fresh seafood and traditional Papua New Guinean food."> <!-- Gives search engines and social previews a short summary of the page. -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Starts a faster connection to Google Fonts before the page requests the font files. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Prepares the second Google Fonts host so the font files load more efficiently. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> <!-- Loads the custom font families used across the website. -->
 
-<link rel="stylesheet" href="style.css"> <!-- Same shared stylesheet used by index.html and experiences.html -->
-</head>
-<body data-page="accommodation"> <!-- data-page tells the shared script.js to mark "Accommodation & Food" as the active nav link on load -->
+<link rel="stylesheet" href="style.css"> <!-- Links the shared stylesheet that controls the page layout, colors, and spacing. -->
+</head> <!-- Closes the metadata section before the visible content begins. -->
 
-<!--==========START; FOR FUTURE DEVELOPMENT==========-->
-<!-- Tide line — signature scroll progress indicator, identical markup to the other pages
+<body data-page="accommodation"> <!-- Starts the visible page and tells the shared script which navigation item is active. -->
+
+<!--==========START; FOR FUTURE DEVELOPMENT, NOT FOR CLASS==========-->
+<!-- Tide line — signature scroll progress indicator, identical markup to the homepage
 <div class="tide-line" aria-hidden="true">
   <svg viewBox="0 0 1200 24" preserveAspectRatio="none" class="tide-line__wave">
     <path d="M0,12 C150,22 250,2 400,12 C550,22 650,2 800,12 C950,22 1050,2 1200,12 L1200,24 L0,24 Z"></path>
   </svg>
   <div class="tide-line__fill" id="tideFill"></div>
 </div> -->
-<!--==========END; FOR FUTURE DEVELOPMENT==========-->
+<!--==========END; FOR FUTURE DEVELOPMENT, NOT FOR CLASS==========-->
 
-<a href="#main" class="skip-link">Skip to content</a>
+<a href="#main" class="skip-link">Skip to content</a> <!-- Lets keyboard users jump directly to the main content instead of tabbing through the whole nav. -->
 
-<!-- ============ NAVIGATION (same structure as the other two pages, "Accommodation & Food" is the current page) ============ -->
-<header class="nav" id="siteNav">
-  <div class="nav__inner">
-    <a href="index.html" class="nav__brand">
-      <span class="nav__brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="34" height="34"><path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M2 34c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="10" r="6" fill="currentColor"/></svg>
+<header class="nav" id="siteNav"> <!-- Creates the fixed top navigation used across the site. -->
+  <div class="nav__inner"> <!-- Centers and pads the navigation content inside the header. -->
+    <a href="index.html" class="nav__brand"> <!-- Links the brand back to the homepage and keeps the site identity consistent. -->
+      <span class="nav__brand-mark" aria-hidden="true"> <!-- Wraps the decorative logo icon and hides it from screen readers. -->
+        <svg viewBox="0 0 40 40" width="34" height="34"><path d="M2 26c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M2 34c4-6 8-6 12 0s8 6 12 0 8-6 12 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="10" r="6" fill="currentColor"/></svg> <!-- Draws the Madang coastal logo used in the site branding. -->
       </span>
-      <span class="nav__brand-text">Madang<em>PNG</em></span>
+      <span class="nav__brand-text">Madang<em>PNG</em></span> <!-- Displays the site name with the PNG emphasis in the logo style. -->
     </a>
 
-    <nav class="nav__links" id="navLinks" aria-label="Primary">
-      <a href="index.html" class="nav__link" data-page="home">Home</a>
-      <a href="index.html#destinations" class="nav__link">Destinations</a>
-      <a href="experiences.html" class="nav__link" data-page="experiences">Experiences</a>
-      <a href="culture.html" class="nav__link" data-page="culture">Culture</a>
-      <a href="accommodation.html" class="nav__link" data-page="accommodation">Accommodation</a>
-      <a href="index.html#plan" class="nav__link">Plan A Trip</a>
+    <nav class="nav__links" id="navLinks" aria-label="Primary"> <!-- Holds the main site links used for navigation between pages. -->
+      <a href="index.html" class="nav__link" data-page="home">Home</a> <!-- Links back to the homepage. -->
+      <a href="index.html#destinations" class="nav__link">Destinations</a> <!-- Jumps to the destination section on the homepage. -->
+      <a href="experiences.html" class="nav__link" data-page="experiences">Experiences</a> <!-- Opens the adventure and activity page. -->
+      <a href="culture.html" class="nav__link" data-page="culture">Culture</a> <!-- Opens the culture and heritage page. -->
+      <a href="accommodation.html" class="nav__link" data-page="accommodation">Accommodation</a> <!-- Keeps this page highlighted as the current section. -->
+      <a href="index.html#plan" class="nav__link">Plan A Trip</a> <!-- Links to the planning section on the homepage. -->
     </nav>
 
-    <div class="nav__actions">
-      <a href="index.html#plan" class="btn btn--coral btn--sm">Explore Now</a>
-      <input class="menu-toggle" type="checkbox" id="navToggle" aria-label="Toggle navigation">
-      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
+    <div class="nav__actions"> <!-- Holds the main CTA and the mobile navigation toggle. -->
+      <a href="index.html#plan" class="btn btn--coral btn--sm">Explore Now</a> <!-- Sends users to the trip-planning section. -->
+      <input class="menu-toggle" type="checkbox" id="navToggle" aria-label="Toggle navigation"> <!-- Toggles the mobile nav menu when the hamburger button is used. -->
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"> <!-- Opens the menu on smaller screens and updates accessibility state. -->
+        <span></span><span></span><span></span> <!-- Creates the three bars of the hamburger icon. -->
       </button>
     </div>
   </div>
 </header>
 
-<main id="main">
+<main id="main"> <!-- Wraps the main page content so the skip link targets the right section. -->
 
-  <!-- ============ PAGE HERO ============ -->
-  <section class="hero hero--page" id="home">
-    <div class="hero__media">
-      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/44/dc/4b/madang-resort-hotel.jpg?w=2000&h=-1&s=1" alt="Aerial view of a tropical resort with a swimming pool surrounded by palm trees" loading="eager">
-      <div class="hero__overlay"></div>
+  <section class="hero hero--page" id="home"> <!-- Creates the large page hero with a background image and introduction text. -->
+    <div class="hero__media"> <!-- Holds the background image behind the hero text. -->
+      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/44/dc/4b/madang-resort-hotel.jpg?w=2000&h=-1&s=1" alt="Aerial view of a tropical resort with a swimming pool surrounded by palm trees" loading="eager"> <!-- Adds the resort-style hero image for the accommodation page. -->
+      <div class="hero__overlay"></div> <!-- Darkens the image so the text remains readable. -->
     </div>
 
-    <div class="hero__content">
-      <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> <span class="breadcrumb__current">Accommodation &amp; Food</span></p>
-      <h1 class="hero__title">Where to Stay &amp; <em>What to Eat</em></h1>
-      <p class="hero__desc">From beachfront resorts to small guesthouses, and fresh reef fish to traditional Papua New Guinean cooking — here's a starting point for planning where to sleep and eat during your time in Madang Province.</p>
-      <div class="hero__actions">
-        <a href="#stay" class="btn btn--coral">Where to Stay</a>
-        <a href="#eat" class="btn btn--ghost">What to Eat</a>
+    <div class="hero__content"> <!-- Wraps the breadcrumb, headline, description, and call-to-action buttons. -->
+      <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> <span class="breadcrumb__current">Accommodation &amp; Food</span></p> <!-- Shows the user's location within the site hierarchy. -->
+      <h1 class="hero__title">Where to Stay &amp; <em>What to Eat</em></h1> <!-- Introduces the two topics of the page in a high-impact headline. -->
+      <p class="hero__desc">From beachfront resorts to small guesthouses, and fresh reef fish to traditional Papua New Guinean cooking — here's a starting point for planning where to sleep and eat during your time in Madang Province.</p> <!-- Explains the page purpose in a short summary for visitors. -->
+      <div class="hero__actions"> <!-- Groups the two hero buttons together. -->
+        <a href="#stay" class="btn btn--coral">Where to Stay</a> <!-- Scrolls directly to the accommodation section. -->
+        <a href="#eat" class="btn btn--ghost">What to Eat</a> <!-- Scrolls directly to the food section. -->
       </div>
     </div>
   </section>
 
-  <!-- ============ INTRO ============ -->
-  <section class="page-intro reveal">
-    <div class="container">
-      <p class="eyebrow">before you book</p>
-      <h2 class="section-title">A starting point, not a booking list</h2>
-      <p class="section-lead">Accommodation and dining options in Madang Province change over time, and availability shifts with the season. Rather than naming specific businesses we can't verify, the categories below describe what's generally available so you know what to search and ask for — confirm current details, pricing and availability directly with providers or a local operator before you travel.</p>
+  <section class="page-intro reveal"> <!-- Adds a short intro before the accommodation and food guides begin. -->
+    <div class="container"> <!-- Keeps the intro content aligned with the site layout width. -->
+      <p class="eyebrow">before you book</p> <!-- Labels the planning note so it is easy to spot. -->
+      <h2 class="section-title">A starting point, not a booking list</h2> <!-- Sets the tone for the informational, not commercial, nature of the page. -->
+      <p class="section-lead">Accommodation and dining options in Madang Province change over time, and availability shifts with the season. Rather than naming specific businesses we can't verify, the categories below describe what's generally available so you know what to search and ask for — confirm current details, pricing and availability directly with providers or a local operator before you travel.</p> <!-- Clarifies that the page is a planning guide rather than a guaranteed booking list. -->
     </div>
   </section>
 
-  <!-- ============ WHERE TO STAY ============ -->
-  <section class="destinations reveal" id="stay">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">where to stay</p>
-        <h2 class="section-title">Accommodation Across the Province</h2>
-        <p class="section-lead">Options generally cluster around Madang Town and the nearby coast, with island-based and more remote stays available further out.</p>
+  <section class="destinations reveal" id="stay"> <!-- Creates the accommodation section and gives it an anchor for the hero links. -->
+    <div class="container"> <!-- Keeps the content within a consistent page width. -->
+      <div class="section-head"> <!-- Holds the heading and introductory text for the section. -->
+        <p class="eyebrow">where to stay</p> <!-- Labels the accommodation section clearly. -->
+        <h2 class="section-title">Accommodation Across the Province</h2> <!-- Names the accommodation categories visitors can expect. -->
+        <p class="section-lead">Options generally cluster around Madang Town and the nearby coast, with island-based and more remote stays available further out.</p> <!-- Tells visitors where most accommodation types are usually found. -->
       </div>
 
-      <div class="tag-row" aria-hidden="true">
-        <span class="tag">Beachfront</span>
-        <span class="tag">Family-Friendly</span>
-        <span class="tag">Budget</span>
-        <span class="tag">Eco-Lodge</span>
-        <span class="tag">Premium</span>
+      <div class="tag-row" aria-hidden="true"> <!-- Creates a quick visual list of accommodation keywords. -->
+        <span class="tag">Beachfront</span> <!-- Highlights stays right next to the water. -->
+        <span class="tag">Family-Friendly</span> <!-- Marks lodging types suitable for groups and families. -->
+        <span class="tag">Budget</span> <!-- Signals lower-cost accommodation options. -->
+        <span class="tag">Eco-Lodge</span> <!-- Identifies more nature-focused stays. -->
+        <span class="tag">Premium</span> <!-- Highlights higher-end stays with more comfort and facilities. -->
       </div>
 
-      <div class="exp-grid">
+      <div class="exp-grid"> <!-- Arranges the accommodation cards in a consistent layout grid. -->
 
-        <article class="info-card">
-          <div class="info-card__media">
-            <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/32d9a35d-1b24-4764-9415-1d183819e9f2/MRH+Poolside+Widelens+shot.JPG?format=1500w" alt="Madang resort and pool" loading="lazy">
+        <article class="info-card"> <!-- Creates a card for hotel and city-style accommodation. -->
+          <div class="info-card__media"> <!-- Contains the image for this accommodation type. -->
+            <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/32d9a35d-1b24-4764-9415-1d183819e9f2/MRH+Poolside+Widelens+shot.JPG?format=1500w" alt="Madang resort and pool" loading="lazy"> <!-- Shows a resort-style stay with a pool and tropical surroundings. -->
           </div>
-          <div class="info-card__body">
-            <span class="eyebrow eyebrow--mono">hotels</span>
-            <h3>Hotels &amp; City-Style Stays</h3>
-            <p>Madang Town has standard hotel-style accommodation suited to business travellers and tourists who want to be close to the harbour, shops and transport links.</p>
+          <div class="info-card__body"> <!-- Contains the text for the accommodation card. -->
+            <span class="eyebrow eyebrow--mono">hotels</span> <!-- Names the accommodation category. -->
+            <h3>Hotels &amp; City-Style Stays</h3> <!-- Labels standard hotel-style accommodation. -->
+            <p>Madang Town has standard hotel-style accommodation suited to business travellers and tourists who want to be close to the harbour, shops and transport links.</p> <!-- Explains the main benefits of city-style lodging. -->
           </div>
         </article>
 
-        <article class="info-card">
-          <div class="info-card__media">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1202510869692311081/original/c243c736-3fef-48be-8c09-1b3a2ba178e8.jpeg?im_w=1440" alt="Rural guesthouses in Madang" loading="lazy">
+        <article class="info-card"> <!-- Creates a card for guesthouses and homestays. -->
+          <div class="info-card__media"> <!-- Stores the guesthouse image. -->
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1202510869692311081/original/c243c736-3fef-48be-8c09-1b3a2ba178e8.jpeg?im_w=1440" alt="Rural guesthouses in Madang" loading="lazy"> <!-- Shows a small local-style accommodation option. -->
           </div>
-          <div class="info-card__body">
-            <span class="eyebrow eyebrow--mono">guesthouses</span>
-            <h3>Guesthouses &amp; Homestays</h3>
-            <p>Smaller, often family-run guesthouses and homestays offer a more personal alternative to larger hotels, and can be a good way to connect with local hosts.</p>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-card__media">
-            <img src="https://papuanewguinea.travel/wp-content/uploads/2023/10/madang_lodge_1-1024x804.jpg" alt="Traditional Bangalo style lodges" loading="lazy">
-          </div>
-          <div class="info-card__body">
-            <span class="eyebrow eyebrow--mono">eco-lodge</span>
-            <h3>Eco Lodges &amp; Island Stays</h3>
-            <p>Smaller, nature-focused lodges and island-based accommodation put you closer to reefs, rainforest or quieter stretches of coast, generally with fewer rooms and a simpler style than a full resort.</p>
+          <div class="info-card__body"> <!-- Holds the guesthouse description text. -->
+            <span class="eyebrow eyebrow--mono">guesthouses</span> <!-- Labels the guesthouse category. -->
+            <h3>Guesthouses &amp; Homestays</h3> <!-- Names the smaller, community-based accommodation option. -->
+            <p>Smaller, often family-run guesthouses and homestays offer a more personal alternative to larger hotels, and can be a good way to connect with local hosts.</p> <!-- Highlights the personal and cultural benefit of staying in a guesthouse or homestay. -->
           </div>
         </article>
 
-        <article class="info-card">
-          <div class="info-card__media">
-            <img src="https://a0.muscache.com/im/pictures/d6ce61b5-87e5-4f45-b54d-42f2f7ef9a55.jpg?im_w=960" alt="contemporary spacious room" loading="lazy">
+        <article class="info-card"> <!-- Creates the eco-lodge and island stay card. -->
+          <div class="info-card__media"> <!-- Stores the eco-lodge image. -->
+            <img src="https://papuanewguinea.travel/wp-content/uploads/2023/10/madang_lodge_1-1024x804.jpg" alt="Traditional Bangalo style lodges" loading="lazy"> <!-- Shows a nature-focused lodge setting in a coastal or island environment. -->
           </div>
-          <div class="info-card__body">
-            <span class="eyebrow eyebrow--mono">budget</span>
-            <h3>Budget-Friendly Accommodation</h3>
-            <p>Simpler rooms and guesthouses keep costs down for travellers prioritising experiences over comfort — a practical option if you're planning a longer stay in the province.</p>
+          <div class="info-card__body"> <!-- Holds the eco-lodge text content. -->
+            <span class="eyebrow eyebrow--mono">eco-lodge</span> <!-- Identifies the eco-lodge option. -->
+            <h3>Eco Lodges &amp; Island Stays</h3> <!-- Names the nature-focused accommodation type. -->
+            <p>Smaller, nature-focused lodges and island-based accommodation put you closer to reefs, rainforest or quieter stretches of coast, generally with fewer rooms and a simpler style than a full resort.</p> <!-- Explains the feel and location advantages of eco-lodges. -->
+          </div>
+        </article>
+
+        <article class="info-card"> <!-- Creates the budget accommodation card. -->
+          <div class="info-card__media"> <!-- Contains the budget room image. -->
+            <img src="https://a0.muscache.com/im/pictures/d6ce61b5-87e5-4f45-b54d-42f2f7ef9a55.jpg?im_w=960" alt="contemporary spacious room" loading="lazy"> <!-- Shows a simple but functional room that suits budget travellers. -->
+          </div>
+          <div class="info-card__body"> <!-- Holds the budget accommodation description. -->
+            <span class="eyebrow eyebrow--mono">budget</span> <!-- Identifies the lower-cost accommodation category. -->
+            <h3>Budget-Friendly Accommodation</h3> <!-- Names the budget accommodation type. -->
+            <p>Simpler rooms and guesthouses keep costs down for travellers prioritising experiences over comfort — a practical option if you're planning a longer stay in the province.</p> <!-- Explains the value of budget rooms for extended trips. -->
           </div>
         </article>
 
@@ -151,186 +148,179 @@
     </div>
   </section>
 
-  <!-- ---- Spotlight: Beachfront & Coastal Resorts (dark variant) ---- -->
-  <section class="split split--dark reveal">
-    <div class="container split__grid">
-      <div class="split__media">
-        <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/15cf508e-e066-440d-877f-feac5b9821a7/Lagoon+Bungalow.jpg?format=1500w" alt="Units over the ocean" loading="lazy">
+  <section class="split split--dark reveal"> <!-- Highlights beachfront resort stays as a featured accommodation option. -->
+    <div class="container split__grid"> <!-- Keeps the split content aligned with the page width. -->
+      <div class="split__media"> <!-- Places the feature image on the left of the split layout. -->
+        <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/15cf508e-e066-440d-877f-feac5b9821a7/Lagoon+Bungalow.jpg?format=1500w" alt="Units over the ocean" loading="lazy"> <!-- Shows beachside resort rooms overlooking the water. -->
       </div>
-      <div class="split__content">
-        <p class="eyebrow eyebrow--mono eyebrow--light">beachfront</p>
-        <h3 class="section-title section-title--light">Beachfront &amp; Coastal Resorts</h3>
-        <p>For travellers who want to stay close to the water, beachfront and coastal resort-style properties around Madang generally offer pools, on-site dining and easier access to boat trips and reef activities. This tier tends to book up faster in peak periods, so plan ahead where possible.</p>
-        <a href="#eat" class="btn btn--outline-light">See What to Eat</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="wave-divider wave-divider--to-deep" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"></path></svg></div>
-
-  <!-- ---- Spotlight: Comfortable & Premium Stays (light variant, reversed, on the dark-section boundary) ---- -->
-  <section class="split split--reverse reveal" style="background: var(--reef-deep);">
-    <div class="container split__grid">
-      <div class="split__content">
-        <p class="eyebrow eyebrow--mono eyebrow--light">premium</p>
-        <h2 class="section-title section-title--light">Comfortable &amp; Premium Stays</h2>
-        <p style="color: rgba(255,253,248,0.78);">At the higher end, expect more spacious rooms, better bedding and finishes, and often a more central or scenic location. Even "premium" in Madang tends to be understated rather than flashy — the setting does most of the work.</p>
-        <a href="index.html#plan" class="btn btn--outline-light">Plan Your Trip</a>
-      </div>
-      <div class="split__media">
-        <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/33d68faf-79a3-4370-86f4-4293f6c34482/MRH+ship+by+pool+edit.png?format=1000w" alt="Resort and pool experience" loading="lazy">
+      <div class="split__content"> <!-- Describes the benefits of resort-style stays. -->
+        <p class="eyebrow eyebrow--mono eyebrow--light">beachfront</p> <!-- Labels the featured category. -->
+        <h3 class="section-title section-title--light">Beachfront &amp; Coastal Resorts</h3> <!-- Names the resort-style option. -->
+        <p>For travellers who want to stay close to the water, beachfront and coastal resort-style properties around Madang generally offer pools, on-site dining and easier access to boat trips and reef activities. This tier tends to book up faster in peak periods, so plan ahead where possible.</p> <!-- Explains why beachfront resorts are popular and why early booking is useful. -->
+        <a href="#eat" class="btn btn--outline-light">See What to Eat</a> <!-- Takes readers to the food section. -->
       </div>
     </div>
   </section>
 
-  <!-- ============ WHAT TO EAT ============ -->
-  <section class="experiences reveal" id="eat">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow eyebrow--light">what to eat</p>
-        <h2 class="section-title section-title--light">Food Across Madang Province</h2>
-        <p class="section-lead" style="color: rgba(255,253,248,0.75);">Fresh seafood and tropical produce are constants along this coast, alongside traditional Papua New Guinean cooking and a small but growing café and dining scene in Madang Town.</p>
+  <div class="wave-divider wave-divider--to-deep" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"></path></svg></div> <!-- Adds a decorative wave divider between the accommodation and food content. -->
+
+  <section class="split split--reverse reveal" style="background: var(--reef-deep);"> <!-- Highlights premium stays in a reversed split layout. -->
+    <div class="container split__grid"> <!-- Keeps the premium section aligned with the page width. -->
+      <div class="split__content"> <!-- Contains the premium stay text and button. -->
+        <p class="eyebrow eyebrow--mono eyebrow--light">premium</p> <!-- Identifies the premium accommodation category. -->
+        <h2 class="section-title section-title--light">Comfortable &amp; Premium Stays</h2> <!-- Names the premium accommodation segment. -->
+        <p style="color: rgba(255,253,248,0.78);">At the higher end, expect more spacious rooms, better bedding and finishes, and often a more central or scenic location. Even "premium" in Madang tends to be understated rather than flashy — the setting does most of the work.</p> <!-- Explains that luxury here is tied to scenery and comfort, not flashy branding. -->
+        <a href="index.html#plan" class="btn btn--outline-light">Plan Your Trip</a> <!-- Sends readers to the planning section to continue their trip setup. -->
+      </div>
+      <div class="split__media"> <!-- Shows a premium resort-style image on the opposite side. -->
+        <img src="https://images.squarespace-cdn.com/content/v1/642ce23f64bc8d2cfb05db6f/33d68faf-79a3-4370-86f4-4293f6c34482/MRH+ship+by+pool+edit.png?format=1000w" alt="Resort and pool experience" loading="lazy"> <!-- Visualizes a premium resort experience with poolside ambience. -->
+      </div>
+    </div>
+  </section>
+
+  <section class="experiences reveal" id="eat"> <!-- Opens the food and dining section of the page. -->
+    <div class="container"> <!-- Keeps the content within the same visual width as the rest of the page. -->
+      <div class="section-head"> <!-- Holds the heading and intro text for the food section. -->
+        <p class="eyebrow eyebrow--light">what to eat</p> <!-- Labels the dining guide clearly. -->
+        <h2 class="section-title section-title--light">Food Across Madang Province</h2> <!-- Introduces the local food scene. -->
+        <p class="section-lead" style="color: rgba(255,253,248,0.75);">Fresh seafood and tropical produce are constants along this coast, alongside traditional Papua New Guinean cooking and a small but growing café and dining scene in Madang Town.</p> <!-- Summarizes the main food styles travellers can expect. -->
       </div>
 
-      <div class="tag-row" aria-hidden="true">
-        <span class="tag--light tag">Seafood</span>
-        <span class="tag--light tag">Traditional PNG</span>
-        <span class="tag--light tag">Market Fresh</span>
-        <span class="tag--light tag">Coffee</span>
-        <span class="tag--light tag">Casual Dining</span>
+      <div class="tag-row" aria-hidden="true"> <!-- Holds the quick visual tags for food categories. -->
+        <span class="tag--light tag">Seafood</span> <!-- Signals the abundant coastal seafood available locally. -->
+        <span class="tag--light tag">Traditional PNG</span> <!-- Highlights local dishes and ingredients. -->
+        <span class="tag--light tag">Market Fresh</span> <!-- Represents produce and local ingredients available at markets. -->
+        <span class="tag--light tag">Coffee</span> <!-- Marks the coffee culture in the region. -->
+        <span class="tag--light tag">Casual Dining</span> <!-- Covers relaxed café and local dining options. -->
       </div>
 
-      <div class="exp-grid">
+      <div class="exp-grid"> <!-- Arranges the food cards in a matching card grid layout. -->
 
-        <article class="exp-card">
-          <div class="exp-card__media">
-            <img src="Madang+markets.jpg" alt="Fresh local produce at Madang market" loading="lazy">
+        <article class="exp-card"> <!-- Card for fresh produce and ingredients. -->
+          <div class="exp-card__media"> <!-- Holds the market image. -->
+            <img src="Madang+markets.jpg" alt="Fresh local produce at Madang market" loading="lazy"> <!-- Shows local produce sold in a Madang market. -->
           </div>
-          <div class="exp-card__body">
-            <span class="eyebrow eyebrow--mono">produce</span>
-            <h3>Fresh Tropical Fruit &amp; Local Ingredients</h3>
-            <p>Local markets sell tropical fruit, greens and staples like sweet potato and cassava, alongside coconut and sago, which are central to cooking across much of Papua New Guinea's coastal regions.</p>
+          <div class="exp-card__body"> <!-- Contains the produce description. -->
+            <span class="eyebrow eyebrow--mono">produce</span> <!-- Labels the food category. -->
+            <h3>Fresh Tropical Fruit &amp; Local Ingredients</h3> <!-- Names the produce-focused food card. -->
+            <p>Local markets sell tropical fruit, greens and staples like sweet potato and cassava, alongside coconut and sago, which are central to cooking across much of Papua New Guinea's coastal regions.</p> <!-- Explains the core ingredients of the local food culture. -->
           </div>
-          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Adds a simple arrow to the card for visual emphasis. -->
         </article>
 
-        <article class="exp-card">
-          <div class="exp-card__media">
-            <img src="https://www.callmepmc.com/wp-content/uploads/2012/09/Grilled-Steak-1.jpg" alt="Outdoor grilled steak" loading="lazy">
+        <article class="exp-card"> <!-- Card for grilled and international-style meals. -->
+          <div class="exp-card__media"> <!-- Holds the grilled food image. -->
+            <img src="https://www.callmepmc.com/wp-content/uploads/2012/09/Grilled-Steak-1.jpg" alt="Outdoor grilled steak" loading="lazy"> <!-- Shows grilled meat as a common restaurant option. -->
           </div>
-          <div class="exp-card__body">
-            <span class="eyebrow eyebrow--mono">grill</span>
-            <h3>Steakhouses &amp; Grills</h3>
-            <p>Alongside seafood and local dishes, Madang Town has restaurant options serving grilled meat and more familiar international-style menus for travellers who want variety.</p>
+          <div class="exp-card__body"> <!-- Text content for the grilled food card. -->
+            <span class="eyebrow eyebrow--mono">grill</span> <!-- Labels the meal style. -->
+            <h3>Steakhouses &amp; Grills</h3> <!-- Names the grilled and meat-focused dining option. -->
+            <p>Alongside seafood and local dishes, Madang Town has restaurant options serving grilled meat and more familiar international-style menus for travellers who want variety.</p> <!-- Explains the range of restaurant options available in town. -->
           </div>
-          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Adds a visual cue to continue exploring the food section. -->
         </article>
 
-        <article class="exp-card">
-          <div class="exp-card__media">
-            <img src="https://papuanewguinea.travel/wp-content/uploads/2023/10/restaurant_madang_cafe-1024x678.png" alt="Cozy cafe interior with modern chairs and ambient lighting" loading="lazy">
+        <article class="exp-card"> <!-- Card for cafés and casual dining. -->
+          <div class="exp-card__media"> <!-- Holds the café image. -->
+            <img src="https://papuanewguinea.travel/wp-content/uploads/2023/10/restaurant_madang_cafe-1024x678.png" alt="Cozy cafe interior with modern chairs and ambient lighting" loading="lazy"> <!-- Shows a relaxed café environment in town. -->
           </div>
-          <div class="exp-card__body">
-            <span class="eyebrow eyebrow--mono">casual</span>
-            <h3>Cafés &amp; Casual Dining</h3>
-            <p>A small café scene in Madang Town covers coffee, light meals and casual dining — a useful option for breakfast or a break between activities.</p>
+          <div class="exp-card__body"> <!-- Text content for the café card. -->
+            <span class="eyebrow eyebrow--mono">casual</span> <!-- Identifies the café and informal dining style. -->
+            <h3>Cafés &amp; Casual Dining</h3> <!-- Names the casual dining style. -->
+            <p>A small café scene in Madang Town covers coffee, light meals and casual dining — a useful option for breakfast or a break between activities.</p> <!-- Explains why cafés are handy for travel days. -->
           </div>
-          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span>
+          <span class="exp-card__arrow" aria-hidden="true">&rarr;</span> <!-- Adds the same arrow accent used across the other cards. -->
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- ---- Spotlight: Fresh Seafood & Ocean Catch (light variant) ---- -->
-  <section class="split reveal">
-    <div class="container split__grid">
-      <div class="split__content">
-        <p class="eyebrow eyebrow--mono">seafood</p>
-        <h2 class="section-title">Fresh Seafood &amp; Ocean Catch</h2>
-        <p>With reefs and open ocean right along the coast, fresh fish and other seafood are a highlight of eating in Madang. Restaurants and guesthouses close to the water often serve the day's catch, and it's worth asking what's fresh rather than sticking to a fixed menu.</p>
-        <a href="#stay" class="btn btn--outline">Back to Where to Stay</a>
+  <section class="split reveal"> <!-- Highlights fresh seafood as a key dining experience. -->
+    <div class="container split__grid"> <!-- Keeps the seafood spotlight aligned with the page layout. -->
+      <div class="split__content"> <!-- Contains text about seafood dining. -->
+        <p class="eyebrow eyebrow--mono">seafood</p> <!-- Labels the seafood theme clearly. -->
+        <h2 class="section-title">Fresh Seafood &amp; Ocean Catch</h2> <!-- Names the marine food highlight. -->
+        <p>With reefs and open ocean right along the coast, fresh fish and other seafood are a highlight of eating in Madang. Restaurants and guesthouses close to the water often serve the day's catch, and it's worth asking what's fresh rather than sticking to a fixed menu.</p> <!-- Explains how seafood is typically offered and why local catches are worth asking for. -->
+        <a href="#stay" class="btn btn--outline">Back to Where to Stay</a> <!-- Leads the user back to the accommodation portion. -->
       </div>
-      <div class="split__media">
-        <img src="seafood00.jpg" alt="Grilled fish platter served with sides" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- ---- Spotlight: Traditional PNG Cuisine & Coffee (dark variant, reversed) ---- -->
-  <section class="split split--dark split--reverse reveal">
-    <div class="container split__grid">
-      <div class="split__content">
-        <p class="eyebrow eyebrow--mono eyebrow--light">traditional</p>
-        <h3 class="section-title section-title--light">Traditional PNG Cuisine &amp; Local Coffee</h3>
-        <p>Traditional Papua New Guinean cooking often centres on staples like sago, sweet potato and greens, frequently cooked with coconut milk, and sometimes prepared in a mumu — an earth oven used for special occasions. Papua New Guinea is also known for highland-grown coffee, among the more distinctive coffee-growing regions in the South Pacific, and it's worth seeking out locally roasted beans while you're here.</p>
-        <a href="index.html#culture" class="btn btn--outline-light">Read More About Culture</a>
-      </div>
-      <div class="split__media">
-        <img src="https://images.pexels.com/photos/1029649/pexels-photo-1029649.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Close-up of freshly roasted coffee beans" loading="lazy">
+      <div class="split__media"> <!-- Shows the seafood image alongside the text. -->
+        <img src="seafood00.jpg" alt="Grilled fish platter served with sides" loading="lazy"> <!-- Shows a seafood platter typical of coastal dining. -->
       </div>
     </div>
   </section>
 
-  <!-- ============ FINAL CTA ============ -->
-  <section class="final-cta">
-    <div class="final-cta__media">
-      <img src="https://papuanewguinea.travel/wp-content/uploads/2024/06/Pero-Pero-Karkar-Island-V-1024x768.jpeg" alt="White sandy beaches" loading="lazy">
-      <div class="final-cta__overlay"></div>
+  <section class="split split--dark split--reverse reveal"> <!-- Focuses on traditional PNG food and coffee in a dark split block. -->
+    <div class="container split__grid"> <!-- Keeps the layout aligned to the site width. -->
+      <div class="split__content"> <!-- Contains the traditional food and coffee explanation. -->
+        <p class="eyebrow eyebrow--mono eyebrow--light">traditional</p> <!-- Labels the cultural food focus. -->
+        <h3 class="section-title section-title--light">Traditional PNG Cuisine &amp; Local Coffee</h3> <!-- Names the local food and coffee highlight. -->
+        <p>Traditional Papua New Guinean cooking often centres on staples like sago, sweet potato and greens, frequently cooked with coconut milk, and sometimes prepared in a mumu — an earth oven used for special occasions. Papua New Guinea is also known for highland-grown coffee, among the more distinctive coffee-growing regions in the South Pacific, and it's worth seeking out locally roasted beans while you're here.</p> <!-- Explains the staple ingredients and why local coffee is worth trying. -->
+        <a href="index.html#culture" class="btn btn--outline-light">Read More About Culture</a> <!-- Links to the culture page to connect food and tradition. -->
+      </div>
+      <div class="split__media"> <!-- Displays the coffee bean image for the traditional food feature. -->
+        <img src="https://images.pexels.com/photos/1029649/pexels-photo-1029649.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Close-up of freshly roasted coffee beans" loading="lazy"> <!-- Shows roasted coffee beans as a visual cue for the coffee section. -->
+      </div>
     </div>
-    <div class="final-cta__content">
-      <h2>Now Build the Rest of Your Trip</h2>
-      <p>With a place to stay and an idea of what to eat sorted, pair it with the full range of experiences Madang has to offer.</p>
-      <a href="experiences.html" class="btn btn--coral btn--lg">Browse Experiences &amp; Adventures</a>
+  </section>
+
+  <section class="final-cta"> <!-- Creates the closing call-to-action banner before the footer. -->
+    <div class="final-cta__media"> <!-- Holds the background image for the CTA banner. -->
+      <img src="https://papuanewguinea.travel/wp-content/uploads/2024/06/Pero-Pero-Karkar-Island-V-1024x768.jpeg" alt="White sandy beaches" loading="lazy"> <!-- Adds a beach image to reinforce the travel destination feel. -->
+      <div class="final-cta__overlay"></div> <!-- Darkens the image for better contrast with the text. -->
+    </div>
+    <div class="final-cta__content"> <!-- Contains the CTA text and button. -->
+      <h2>Now Build the Rest of Your Trip</h2> <!-- Encourages the user to keep planning the rest of their journey. -->
+      <p>With a place to stay and an idea of what to eat sorted, pair it with the full range of experiences Madang has to offer.</p> <!-- Connects the accommodation guide to the rest of the website. -->
+      <a href="experiences.html" class="btn btn--coral btn--lg">Browse Experiences &amp; Adventures</a> <!-- Links to the experiences page for the next planning step. -->
     </div>
   </section>
 
 </main>
 
-<!-- ============ FOOTER (same structure as the other two pages) ============ -->
-<footer class="footer">
-  <div class="wave-divider wave-divider--footer" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,40 L1440,0 L0,0 Z"></path></svg></div>
+<footer class="footer"> <!-- Adds the site footer for branding, links, and social media icons. -->
+  <div class="wave-divider wave-divider--footer" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,40 L1440,0 L0,0 Z"></path></svg></div> <!-- Adds the footer wave divider to match the site branding. -->
 
-  <div class="container footer__grid">
-    <div class="footer__brand">
-      <span class="nav__brand-text nav__brand-text--footer">Madang<em>PNG</em></span>
-      <p>Discover Madang Province, Papua New Guinea.</p>
-      <div class="footer__social" aria-label="Social media">
-        <a href="#" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.2 3.58c-2.5 0-4.2 1.5-4.2 4.3v2.02H7.3V13h2.7v8h3.5Z"/></svg>
+  <div class="container footer__grid"> <!-- Arranges the footer columns into a consistent layout. -->
+    <div class="footer__brand"> <!-- Holds the footer brand identity and social icons. -->
+      <span class="nav__brand-text nav__brand-text--footer">Madang<em>PNG</em></span> <!-- Repeats the Madang branding in the footer. -->
+      <p>Discover Madang Province, Papua New Guinea.</p> <!-- Adds a short destination tagline in the footer. -->
+      <div class="footer__social" aria-label="Social media"> <!-- Wraps the social media icons in a labeled container. -->
+        <a href="#" aria-label="Facebook"> <!-- Placeholder Facebook link for future social profile use. -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.2 3.58c-2.5 0-4.2 1.5-4.2 4.3v2.02H7.3V13h2.7v8h3.5Z"/></svg> <!-- Draws the Facebook icon. -->
         </a>
-        <a href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+        <a href="#" aria-label="Instagram"> <!-- Placeholder Instagram link for future social profile use. -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg> <!-- Draws the Instagram icon. -->
         </a>
-        <a href="#" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z"/></svg>
+        <a href="#" aria-label="YouTube"> <!-- Placeholder YouTube link for future social profile use. -->
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z"/></svg> <!-- Draws the YouTube icon. -->
         </a>
       </div>
     </div>
 
-    <div class="footer__col"> 
-      <h4><a href="index.html#discover">Discover</a></h4>
+    <div class="footer__col"> <!-- Creates a footer link column for the "Discover" section. -->
+      <h4><a href="index.html#discover">Discover</a></h4> <!-- Links to the discover section on the homepage. -->
     </div>
 
-    <div class="footer__col">
-      <h4><a href="index.html#destinations">Destinations</a></h4>
+    <div class="footer__col"> <!-- Creates a footer link column for destinations. -->
+      <h4><a href="index.html#destinations">Destinations</a></h4> <!-- Links the user to destination information on the homepage. -->
     </div>
 
-    <div class="footer__col">
-      <h4><a href="experiences.html">Experiences</a></h4>
+    <div class="footer__col"> <!-- Creates a footer link column for the experiences page. -->
+      <h4><a href="experiences.html">Experiences</a></h4> <!-- Links to the experiences and adventures page. -->
     </div>
   </div>
 
-  <div class="container footer__bottom">
-    <p>&copy; <span id="year"></span> Madang Tourism. All rights reserved.</p>
-    <p class="footer__note">Independent tourism guide · Not an official government site</p>
+  <div class="container footer__bottom"> <!-- Holds the copyright and site disclaimer. -->
+    <p>&copy; <span id="year"></span> Madang Tourism. All rights reserved.</p> <!-- Displays the copyright statement and fills the dynamic year via JavaScript. -->
+    <p class="footer__note">Independent tourism guide · Not an official government site</p> <!-- Sets expectation that the site is an independent guide, not a government resource. -->
   </div>
 </footer>
 
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+<button class="back-to-top" id="backToTop" aria-label="Back to top"> <!-- Creates the floating button that returns users to the top of the page. -->
+  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg> <!-- Draws the upward arrow icon used on the back-to-top button. -->
 </button>
 
-<script src="script.js"></script> <!-- Same shared script used by all three pages -->
-</body>
-</html>
+<script src="script.js"></script> <!-- Loads the shared JavaScript used across the site for navigation and page behavior. -->
+</body> <!-- Ends the visible document content. -->
+</html> <!-- Closes the HTML document. -->
