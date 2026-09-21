@@ -318,11 +318,13 @@
       </div> <!-- Closes heading block -->
 
       <div class="plan-grid" id="planGrid"> <!-- Grid of six clickable planning cards; id referenced by JS -->
-        <button class="plan-card" data-plan="getting-there" aria-expanded="false"> <!-- Card 1 button; data-plan is the key JS uses to look up its detail text -->
+        <a href="https://www.google.com/travel/flights/search?tfs=..." target="_blank">
+          <button class="plan-card" data-plan="getting-there" aria-expanded="false"> <!-- Card 1 button; data-plan is the key JS uses to look up its detail text -->
           <span class="plan-card__icon" aria-hidden="true">✈</span> <!-- Emoji icon representing air travel -->
           <h3>Getting There</h3> <!-- Card title -->
           <p>Madang is generally reached by domestic flight, with onward road and boat options locally.</p> <!-- Card summary text -->
-        </button> <!-- Closes card 1 -->
+          </button> <!-- Closes card 1 -->
+        </a>
         <button class="plan-card" data-plan="where-to-stay" aria-expanded="false"> <!-- Card 2 button -->
           <span class="plan-card__icon" aria-hidden="true">🏝</span> <!-- Emoji icon representing accommodation -->
           <h3>Where to Stay</h3> <!-- Card title -->
