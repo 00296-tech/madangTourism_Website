@@ -61,7 +61,7 @@
       <p class="hero__desc">Pristine beaches, fringing islands and coral reefs sit alongside rainforest, wildlife and living traditions passed down through generations of Madang communities. This is the north coast of Papua New Guinea, at its most welcoming.</p> <!-- Supporting paragraph describing Madang -->
       <div class="hero__actions"> <!-- Wrapper that lays the two hero buttons out side by side -->
         <a href="#discover" class="btn btn--coral">Explore Madang</a> <!-- Primary button scrolling to the About/Discover section -->
-        <a href="#plan" class="btn btn--ghost">Plan A Trip</a> <!-- Secondary, less prominent button scrolling to the Plan section -->
+        <a href="#plan" class="btn btn--ghost">Plan Your Trip</a> <!-- Secondary, less prominent button scrolling to the Plan section -->
       </div> <!-- Closes hero actions wrapper -->
     </div> <!-- Closes hero content wrapper -->
 
@@ -318,38 +318,52 @@
       </div> <!-- Closes heading block -->
 
       <div class="plan-grid" id="planGrid"> <!-- Grid of six clickable planning cards; id referenced by JS -->
-        <a href="https://www.google.com/travel/flights/flights-to-madang.html?gl=US&hl=en-US" target="_blank">
+        <a href="https://www.google.com/travel/flights/flights-to-madang.html?gl=US&hl=en-US" target="_blank"> <!--Takes you to googlr flights -->
           <button class="plan-card" data-plan="getting-there" aria-expanded="false"> <!-- Card 1 button; data-plan is the key JS uses to look up its detail text -->
           <span class="plan-card__icon" aria-hidden="true">✈</span> <!-- Emoji icon representing air travel -->
           <h3>Getting There</h3> <!-- Card title -->
           <p>Madang is generally reached by domestic flight, with onward road and boat options locally.</p> <!-- Card summary text -->
           </button> <!-- Closes card 1 -->
         </a>
+        
+        <a href="accommodation.html#stay" class="plan-card-link"> <!-- Wraps the second card in a link to the Accommodation page -->
         <button class="plan-card" data-plan="where-to-stay" aria-expanded="false"> <!-- Card 2 button -->
           <span class="plan-card__icon" aria-hidden="true">🏝</span> <!-- Emoji icon representing accommodation -->
           <h3>Where to Stay</h3> <!-- Card title -->
           <p>Options range from beachfront resorts to smaller guesthouses and island lodges.</p> <!-- Card summary text -->
         </button> <!-- Closes card 2 -->
+        </a>
+
+        <a href="experiences.html#nature-wildlife"> <!-- Wraps the third card in a link to the Experiences page -->
         <button class="plan-card" data-plan="things-to-do" aria-expanded="false"> <!-- Card 3 button -->
           <span class="plan-card__icon" aria-hidden="true">🤿</span> <!-- Emoji icon representing activities -->
           <h3>Things to Do</h3> <!-- Card title -->
           <p>Diving, island hopping, cultural visits and rainforest trips can usually be arranged locally.</p> <!-- Card summary text -->
         </button> <!-- Closes card 3 -->
+        </a>
+        <a href="experiences.html#best-time"> <!-- Wraps the fourth card in a link to the Experiences page -->
         <button class="plan-card" data-plan="best-time" aria-expanded="false"> <!-- Card 4 button -->
           <span class="plan-card__icon" aria-hidden="true">☀</span> <!-- Emoji icon representing climate/season -->
           <h3>Best Time to Visit</h3> <!-- Card title -->
           <p>PNG has a tropical climate year-round; check current seasonal conditions before booking.</p> <!-- Card summary text -->
         </button> <!-- Closes card 4 -->
+        </a>
+
+        <a href="culture.html#music-dance"> <!-- Wraps the fifth card in a link to the Experiences page -->
         <button class="plan-card" data-plan="local-experiences" aria-expanded="false"> <!-- Card 5 button -->
           <span class="plan-card__icon" aria-hidden="true">🎭</span> <!-- Emoji icon representing culture/experiences -->
-          <h3>Local Experiences</h3> <!-- Card title -->
-          <p>Community-run tours and homestays offer a closer look at local life and culture.</p> <!-- Card summary text -->
+          <h3>Cultural Shows</h3> <!-- Card title -->
+          <p>Community-run tours and shows offer a closer look at local life and culture.</p> <!-- Card summary text -->
         </button> <!-- Closes card 5 -->
+        </a>
+        
+        <a href="experiences.html#travel-tips"> <!-- Wraps the sixth card in a link to the Experiences page -->
         <button class="plan-card" data-plan="travel-tips" aria-expanded="false"> <!-- Card 6 button -->
           <span class="plan-card__icon" aria-hidden="true">🧭</span> <!-- Emoji icon representing general travel tips -->
           <h3>Travel Tips</h3> <!-- Card title -->
           <p>Check current entry requirements, travel advisories and health guidance before departure.</p> <!-- Card summary text -->
         </button> <!-- Closes card 6 -->
+        </a>
       </div> <!-- Closes plan grid -->
 
       <div class="plan-detail" id="planDetail" hidden></div> <!-- Empty panel that JS fills with expanded detail text when a plan card is clicked; hidden by default -->
