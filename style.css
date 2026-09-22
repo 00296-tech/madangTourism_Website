@@ -262,7 +262,7 @@ body:has(.menu-toggle:checked) { overflow: hidden; } /* locks page scrolling beh
   background: linear-gradient(180deg, rgba(30,41,59,0.52) 0%, rgba(30,41,59,0.38) 35%, rgba(17,24,39,0.82) 100%); /* deep-slate gradient keeps contrast but softens the starkness */
 }
 .hero__content { position: relative; z-index: 1; max-width: 760px; padding: 0 32px 110px; margin-left: 5vw; } /* positions the text above the overlay, limits its width, offsets it slightly from the left edge */
-.hero__title { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-top: 40px; margin-bottom: 22px; text-shadow: 0 0 8px rgba(0, 0, 0, 0.5)} /* large, responsive headline size with slightly tightened letter spacing */
+.hero__title { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-top: 50px; text-shadow: 0 0 8px rgba(0, 0, 0, 0.5)} /* large, responsive headline size with slightly tightened letter spacing */
 .madang { color: var(--tide); text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); } /* colors the "Madang" word in the hero headline turquoise, overriding the default white */
 .hero__desc { max-width: 55ch; font-size: 1.08rem; color: rgba(255,255,255,0.9); margin-bottom: 34px; } /* supporting paragraph sizing, width limit and near-white color */
 .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; } /* lays the two hero buttons side by side, wrapping onto a new line if needed */
