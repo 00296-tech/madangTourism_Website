@@ -631,7 +631,6 @@ body.faq-open { overflow: hidden; }
   display: flex; align-items: center; gap: 8px; /* lays the crumb items out in a row */
   font-family: var(--font-family); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; /* small mono label styling matching the eyebrow style */
   color: rgba(255,255,255,0.75); position: relative; z-index: 1; /* sits above the hero image/overlay */
-  margin-top: 1.5rem; margin-bottom:0.5rem; /*Aligns the breadcrumb to the top of the viewport*/
 }
 .breadcrumb a { color: rgba(255,255,255,0.75); transition: color 0.25s var(--ease); } /* muted link color with a smooth hover transition */
 .breadcrumb a:hover { color: #fff; } /* brightens on hover */
